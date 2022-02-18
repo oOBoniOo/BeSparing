@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Control your daily expenses
+<p align="center"> Control your daily expenses, don't waste your money!
     <br> 
 </p>
 
