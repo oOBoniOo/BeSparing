@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { URL_GASOFA } from '../config';
 import { conectDB } from '../lib/dbConnect';
-import { iGasolinera, Gasolinera } from '../models/Gasolinera.model';
+import { Gasolinera } from '../models/Gasolinera.model';
 
 type response = {
   Fecha: String;
@@ -10,8 +10,7 @@ type response = {
   Nota: String;
   ResultadoConsulta: String;
 };
-
-(async () => {
+export const getGasolineras = async () => {
   const { close } = await conectDB();
   try {
     await Gasolinera.collection.drop();
@@ -53,4 +52,4 @@ type response = {
   );
 
   await close();
-})();
+};

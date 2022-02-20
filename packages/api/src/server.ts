@@ -2,6 +2,8 @@ import fastify from 'fastify';
 import { mainApp } from './app';
 import { PORT } from './config';
 import pino from 'pino';
+import fastifyCron from 'fastify-cron';
+import { getGasolineras } from './seed/getGasolineras';
 
 const logger = pino({
   name: 'Fastify-Pretty-Config',
@@ -23,9 +25,21 @@ const server = fastify({
 
 server.register(mainApp);
 
+server.register(fastifyCron, {
+  jobs: [
+    {
+      cronTime: '0 * * * *', // Everyday at midnight UTC
+      onTick: async (server) => {
+        await getGasolineras();
+      },
+    },
+  ],
+});
+
 const start = async () => {
   try {
     await server.listen(PORT, '0.0.0.0');
+    server.cron.startAllJobs()
     console.log('listening at port: ', PORT);
   } catch (err) {
     server.log.error(err);
