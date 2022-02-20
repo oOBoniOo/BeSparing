@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://cdn.pixabay.com/photo/2018/10/02/11/24/piggy-bank-3718557_960_720.png" alt="Project logo"></a>
+ <img width=200px height=200px src="./imgs/piggy.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">BeSparing</h3>
