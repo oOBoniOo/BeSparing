@@ -23,29 +23,30 @@ type response = {
   const consulta: response = res.data;
 
   const allGas: [] = consulta.ListaEESSPrecio;
-  allGas.forEach((obj) => {
-    Object.keys(obj).forEach((key) => {
-      const replacedKey = key
-          .trim()
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[\s&\/\\#,+()$~%.'":*?<>{}]/g, '_')
-          .replace('__', '_')
-          .replace('longitud_wgs84_', 'longitud');
 
-      if (key !== replacedKey) {
-        obj[replacedKey] = obj[key];
-        delete obj[key];
-      }
-    });
-    // const coordes = {type: 'Point', coordinates: [parseFloat(obj['latitud'].replace(/,/g, '')), parseFloat(obj['latitud'].replace(/,/g, ''))]};
-    // obj.coords = coordes;
-  });
+
   // console.log(allGas);
   await Promise.all(
-      allGas.map(async (gas) => {
-        await Gasolinera.create(gas).then();
+      allGas.map(async (gas: any) => {
+        const coordes = {type: 'Point', coordinates: [parseFloat(gas['Longitud (WGS84)'].replace(/,/g, '.')), parseFloat(gas['Latitud'].replace(/,/g, '.'))]};
+        gas.coords = coordes;
+        const info = {
+          cp: gas['C.P.'],
+          direccion: gas['Dirección'],
+          horario: gas['Horario'],
+          localidad: gas['Localidad'],
+          municipio: gas['Municipio'],
+          coords: coordes,
+          gasoleo: gas['Precio Gasoleo A'],
+          gasolina_95: gas['Precio Gasolina 95 E5'],
+          gasolina_98: gas['Precio Gasolina 98 E5'],
+          ideess: gas['IDEESS'],
+          idmunicipio: gas['IDMunicipio'],
+          idprovincia: gas['IDProvincia'],
+          idccaa: gas['IDCCAA'],
+        };
+
+        await Gasolinera.create(info).then();
       }),
   );
 
