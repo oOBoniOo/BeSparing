@@ -6,7 +6,6 @@ const checkEnv = (envVar: string) => {
   if (!process.env[envVar]) {
     throw new Error(`Please define the Enviroment variable ${envVar}`);
   } else {
-    console.log('URL DB: ', process.env[envVar] );
     return process.env[envVar] as string;
   }
 };
