@@ -157,5 +157,6 @@ node_modules
 psd
 thumb
 sketch
-
+data_sources
+packages/api/src/data_sources/
 # End of https://www.toptal.com/developers/gitignore/api/nextjs,node,react

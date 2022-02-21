@@ -3,7 +3,7 @@ import { mainApp } from './app';
 import { PORT } from './config';
 import pino from 'pino';
 import fastifyCron from 'fastify-cron';
-import { getGasolineras } from './seed/getGasolineras';
+import { getGasolineras } from './feed/getGasolineras';
 
 const logger = pino({
   name: 'Fastify-Pretty-Config',
