@@ -24,10 +24,8 @@ export const writeMun= async () => {
 
   await Promise.all(
       municipios.map(async (mun: any) => {
-        console.log('municipio******** ', mun['NOMBRE_ACTUAL']);
-        const prov:any = await Provincia.findOne({codigo: parseInt(mun['COD_PROV'])}).lean().exec();
-        const provId = prov._id;
-        // const autId = prov.aut;
+        const prov:any = await Provincia.findOne({codigo: parseInt(mun['COD_PROV'])}).lean();
+        console.log(prov);
         const info = {
           nombre: mun['NOMBRE_ACTUAL']
               .normalize('NFD')
@@ -37,8 +35,8 @@ export const writeMun= async () => {
             type: 'Point',
             coordinates: [mun['LONGITUD_ETRS89'], mun['LATITUD_ETRS89']],
           },
-          prov: provId,
-          // aut: autId,
+          prov: prov._id,
+          aut: prov.aut,
         };
         await Municipio.create(info).then();
       }),
