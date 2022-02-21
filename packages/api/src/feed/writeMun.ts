@@ -17,7 +17,6 @@ export const writeMun= async () => {
   await Promise.all(
       municipios.map(async (mun: any) => {
         const prov:any = await Provincia.findOne({codigo: parseInt(mun['COD_PROV'])}).lean();
-        console.log(prov);
         const info = {
           nombre: mun['NOMBRE_ACTUAL']
               .normalize('NFD')
@@ -37,3 +36,4 @@ export const writeMun= async () => {
   await close();
 };
 writeMun();
+

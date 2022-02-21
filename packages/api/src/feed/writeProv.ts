@@ -13,7 +13,7 @@ export const writeProv= async () => {
   }
   const jsonData= require('./data_sources/provs.json');
   const provincias = jsonData['PROVINCIAS'];
-  console.log(provincias);
+ 
   // key
   // .trim()
   // .toLowerCase()
