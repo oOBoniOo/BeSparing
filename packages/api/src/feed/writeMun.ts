@@ -13,14 +13,6 @@ export const writeMun= async () => {
   }
   const jsonData= require('./data_sources/muns.json');
   const municipios = jsonData['MUNICIPIOS'];
-  // key
-  // .trim()
-  // .toLowerCase()
-  // .normalize('NFD')
-  // .replace(/[\u0300-\u036f]/g, '')
-  // .replace(/[\s&\/\\#,+()$~%.'":*?<>{}]/g, '_')
-  // .replace('__', '_')
-  // const coordes = {type: 'Point', coordinates: [parseFloat(prov['Longitud (WGS84)'].replace(/,/g, '.')), parseFloat(prov['Latitud'].replace(/,/g, '.'))]};
 
   await Promise.all(
       municipios.map(async (mun: any) => {
