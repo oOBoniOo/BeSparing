@@ -40,7 +40,7 @@ const start = async () => {
   try {
     await server.listen(PORT, '0.0.0.0');
     server.cron.startAllJobs();
-    console.log('listening at port: ', PORT);
+    server.log.info('listening at port: ', PORT);
   } catch (err) {
     server.log.error(err);
     process.exit(1);

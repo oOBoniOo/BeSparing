@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { URL_GASOFA } from '../config';
 import { conectDB } from '../lib/dbConnect';
-import { Gasolinera } from '../models/Gasolinera.model';
+import { Gasolinera } from '../models/gasolinera.model';
 
 type response = {
   Fecha: String;

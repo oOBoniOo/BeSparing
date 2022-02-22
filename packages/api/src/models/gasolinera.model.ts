@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import { iPoint } from './Point.model';
+import { iPoint } from './point.model';
 
 export interface iGasolinera extends Document {
   cp: number;

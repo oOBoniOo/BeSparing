@@ -2,9 +2,13 @@ import { FastifyPluginAsync } from 'fastify';
 import fastifyCors from 'fastify-cors';
 // import { conectDB } from './lib/db';
 import { mainRouter } from './routers/mainRouter';
+import {autRouter} from './routers/aut.router';
+import { conectDB } from './lib/dbConnect';
+import { provRouter } from './routers/prov.router';
+import { munRouter } from './routers/mun.router';
 
 export const mainApp: FastifyPluginAsync = async (app) => {
-  // conectDB();
+  conectDB();
 
   // ALL URL
   // app.register(fastifyCors, {
@@ -24,4 +28,9 @@ export const mainApp: FastifyPluginAsync = async (app) => {
   });
 
   app.register(mainRouter);
+  app.register(autRouter, {prefix: '/aut'});
+  app.register(provRouter, {prefix: '/prov'});
+  app.register(munRouter, {prefix: '/mun'});
+  // app.register(userRouter, {prefix:'/user'});
+  // app.register(stationRouter, {prefix:'/station'});
 };
