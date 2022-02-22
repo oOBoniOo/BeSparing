@@ -4,7 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "seed": "nodemon src/feed/getGasolineras.ts",
+    "aut": "nodemon src/feed/writeAut.ts",
+    "prov": "nodemon src/feed/writeProv.ts",
+    "mun": "nodemon src/feed/writeMun.ts",
+    "cars":"nodemon src/feed/writeCars.ts"
   },
   "dependencies": {
     "@types/pino": "^7.0.5",
