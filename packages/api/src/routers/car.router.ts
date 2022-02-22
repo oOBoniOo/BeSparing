@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
 import { Car } from '../models/car.model';
+import { unique } from '../utils/functions';
 
 type Myrequest = FastifyRequest<{
   Querystring: { marca?:string, modelo?: string, generacion?: string, version?: string }
 }>
+
 
 const getCarByMarca = async (request: Myrequest, reply:FastifyReply) => {
   const { marca } = request.query;
@@ -17,14 +19,10 @@ const getCarByMarca = async (request: Myrequest, reply:FastifyReply) => {
   } else {
     const marcas = await Car.find({}).lean();
     const listaMarcas = marcas.map((m)=>m.marca);
-    const newlist:string[] = [];
-    listaMarcas.forEach((mar)=>{
-      newlist.includes(mar) ? false : newlist.push(mar);
-    });
-
+    const data = unique(listaMarcas);
     reply.send({
       status: 'listado de vehiculos: OK',
-      newlist,
+      data,
     });
   }
 };
@@ -34,10 +32,7 @@ const getCarByModelo = async (request: Myrequest, reply:FastifyReply) => {
   if (marca) {
     const modelos = await Car.find({marca}).lean();
     const listaModelos = modelos.map((m)=>m.modelo);
-    const data:string[] = [];
-    listaModelos.forEach((mod)=>{
-      data.includes(mod) ? false : data.push(mod);
-    });
+    const data = unique(listaModelos);
     reply.send({
       status: 'listado de vehiculos: OK',
       data,
@@ -50,10 +45,7 @@ const getCarByGeneracion = async (request: Myrequest, reply:FastifyReply) => {
   if (marca && modelo) {
     const generaciones = await Car.find({marca, modelo}).lean();
     const listaGeneraciones = generaciones.map((m)=>m.generacion);
-    const data:string[] = [];
-    listaGeneraciones.forEach((mod)=>{
-      data.includes(mod) ? false : data.push(mod);
-    });
+    const data= unique(listaGeneraciones);
     reply.send({
       status: 'listado de vehiculos: OK',
       data,
@@ -66,18 +58,14 @@ const getCarByVersion = async (request: Myrequest, reply:FastifyReply) => {
   const { marca, modelo, generacion } = request.query;
   if (marca && modelo && generacion) {
     console.log(marca,modelo,generacion);
-    const versiones = await Car.find({marca, modelo, generacion}).lean();+
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', versiones);
+    const versiones = await Car.find({marca, modelo, generacion}).lean();
     const listaVersiones = versiones.map((m)=>m.version);
-    const data:string[] = [];
-    listaVersiones.forEach((mod)=>{
-      data.includes(mod) ? false : data.push(mod);
-    });
+    const data= unique(listaVersiones);
     reply.send({
       status: 'listado de vehiculos: OK',
       data,
     });
-  }else {
+  } else {
     reply.send({
       status: 'error',
       message: 'falta algun dato',
