@@ -24,7 +24,7 @@ export const getGasolineras = async () => {
   const allGas: [] = consulta.ListaEESSPrecio;
 
 
-  // console.log(allGas);
+  console.log(allGas);
   await Promise.all(
       allGas.map(async (gas: any) => {
         const coordes = {type: 'Point', coordinates: [parseFloat(gas['Longitud (WGS84)'].replace(/,/g, '.')), parseFloat(gas['Latitud'].replace(/,/g, '.'))]};
@@ -38,7 +38,7 @@ export const getGasolineras = async () => {
           horario: gas['Horario'],
           localidad: gas['Localidad'],
           municipio: gas['Municipio'],
-          coords: coordes,
+          location: coordes,
           gasoleo: parseFloat(gasoleo ? gasoleo:0),
           gasolina_95: parseFloat(gasolina ? gasolina:0),
           gasolina_98: parseFloat(gasolina98 ? gasolina98:0),
@@ -53,3 +53,5 @@ export const getGasolineras = async () => {
 
   await close();
 };
+
+

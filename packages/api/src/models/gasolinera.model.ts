@@ -7,7 +7,7 @@ export interface iGasolinera extends Document {
   horario: string;
   localidad: string;
   municipio: string;
-  coords: iPoint;
+  location: iPoint;
   gasoleo: number;
   gasolina_95: number;
   gasolina_98: number;
@@ -23,7 +23,10 @@ const schema = new Schema({
   horario: String,
   localidad: String,
   municipio: String,
-  coords: Object,
+  location: {
+    type: {type: String, default: 'Point'},
+    coordinates: { type: [Number]},
+  },
   gasoleo: Number,
   gasolina_95: Number,
   gasolina_98: Number,
@@ -33,5 +36,5 @@ const schema = new Schema({
   idprovincia: Number,
   idccaa: Number,
 });
-
+schema.index({location: '2dsphere'});
 export const Gasolinera = mongoose.model<iGasolinera>('Gasolinera', schema);
