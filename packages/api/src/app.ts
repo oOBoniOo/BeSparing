@@ -7,6 +7,7 @@ import { conectDB } from './lib/dbConnect';
 import { provRouter } from './routers/prov.router';
 import { munRouter } from './routers/mun.router';
 import { stationsRouter } from './routers/station.router';
+import { carRouter } from './routers/car.router';
 
 export const mainApp: FastifyPluginAsync = async (app) => {
   conectDB();
@@ -32,6 +33,7 @@ export const mainApp: FastifyPluginAsync = async (app) => {
   app.register(autRouter, {prefix: '/aut'});
   app.register(provRouter, {prefix: '/prov'});
   app.register(munRouter, {prefix: '/mun'});
+  app.register(carRouter, {prefix: '/car'});
   // app.register(userRouter, {prefix:'/user'});
   app.register(stationsRouter, {prefix: '/stations'});
 };
