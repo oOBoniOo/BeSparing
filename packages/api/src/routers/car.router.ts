@@ -8,7 +8,7 @@ type Myrequest = FastifyRequest<{
 }>
 
 
-const getCarByMarca = async (request: Myrequest, reply:FastifyReply) => {
+const getMarcas = async (request: Myrequest, reply:FastifyReply) => {
   const { marca } = request.query;
   if (marca) {
     const veh = await Car.find({marca}).lean();
@@ -74,7 +74,7 @@ const getCarByVersion = async (request: Myrequest, reply:FastifyReply) => {
 };
 
 export const carRouter: FastifyPluginAsync = async (app) =>{
-  app.get('/marcas', getCarByMarca);
+  app.get('/marcas', getMarcas);
   app.get('/modelos', getCarByModelo);
   app.get('/generaciones', getCarByGeneracion);
   app.get('/versiones', getCarByVersion);

@@ -2,11 +2,11 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface iUser extends Document {
   userId: string;
-  nombre: string;
   cp?: number;
   carbData: {
     tipo: string;
     capacidad: number;
+    consumo: number;
   };
   eData: {
     coste: number[];
@@ -16,11 +16,11 @@ export interface iUser extends Document {
 const schema = new Schema(
     {
       userId: String,
-      nombre: String,
       cp: Number,
       carbData: {
         tipo: String,
         capacidad: Number,
+        consumo: Number,
       },
       eData: {
         coste: [],
