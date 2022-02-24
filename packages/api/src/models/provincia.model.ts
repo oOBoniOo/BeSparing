@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import { Autonomia } from './Autonomia.model';
+
 
 export interface iProvincia extends Document {
   codigo: number;

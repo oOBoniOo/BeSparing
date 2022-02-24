@@ -72,6 +72,53 @@ Explain what these tests test and why
 Give an example
 ```
 
+## 🎈 API <a name="usage"></a>
+
+Dispondremos de los siguientes endpoints:
+
+CRUD `Comunidades autonomas`:
+
+- `GET /api/aut`: Lista todas las comunidades autonomas
+- `GET /api/aut?queryparams`: Detalle de una única comunidad autonoma
+
+
+CRUD `provincias`:
+
+- `GET /api/prov`: Lista todas las provincias
+- `GET /api/prov?queryparams(codigo/nombre)`: Detalle de una única provincia
+- `GET /api/prov/porautonomia`: Detalle de una provincias por autonomia
+
+
+
+CRUD `municipios`:
+
+- `GET /api/mun`: Lista todas las provincias
+- `GET /api/mun/porprovincia?prov`: Municipios por autonomia
+- `GET /api/mun/porautonomia?aut`: Municipios por provincia
+
+CRUD `cars`:
+
+- `GET /api/marcas`: Lista todas las marcas
+- `GET /api/modelos?marca`: Lista todas los modelos de una marca
+- `GET /api/generaciones?marca&modelo`: Lista todas las generaciones de un modelo
+- `GET /api/versiones?marca&modelo&generacion`: Lista todas las versionesde una generacion
+- `GET /api/onecar?marca&modelo&generacion&version`: Lista un vehiculo.
+- `POST /api/update`: Actualiza los datos de un vehiculo
+
+
+CRUD `stations`:
+
+- `GET /api/stations?long&lat`: Gasolineras cercanas a un punto.
+
+
+CRUD `users`:
+
+- `GET /api/user`: Lista todos los users
+- `GET /api/user/:id_`: Detalle de un user
+- `POST /api/user/add`: Crea un user
+- `POST /api/user/update/:id_`: Actualiza un user
+- `DELETE /api/user/delete/:id_`: Elimina un user
+
 ## 🎈 Usage <a name="usage"></a>
 
 ....................................
