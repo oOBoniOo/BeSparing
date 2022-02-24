@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/react-in-jsx-scope */
+import React, {useEffect} from 'react';
 import MenuItems from './menuItems';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,7 +9,14 @@ import Image from 'next/image';
 
 
 const Nav2 = () => {
-  const router = useRouter();
+  useEffect(()=>{
+    const btn = document.querySelector('button.mobile-menu-button');
+    const menu = document.querySelector('.mobile-menu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }, []);
+
   return (
     <nav className="bg-white shadow-lg">
       <div className="max-w-6xl px-4 mx-auto">
@@ -20,7 +28,6 @@ const Nav2 = () => {
                 <div className='inline-block w-10 h-10 p-2 m-2 overflow-hidden rounded-full ring-4 ring-rose-200 ring-offset-4'>
                   <Image src={piggy} alt="Logo" width={50} height={50}/>
                 </div>
-
               </Link>
             </div>
             {/* <!-- Primary Navbar items --> */}
@@ -31,16 +38,10 @@ const Nav2 = () => {
                   <>
                     <Link href={item.url} key={index}>
                       <div
-                        className={`className="px-2 py-4  font-semibold text-gray-500 transition duration-300 hover:text-green-500  ${
-                        router.asPath === item.url ?
-                        'text-primary-500' :
-                        'text-secondary-300'
-                        }`}
-                      >
+                        className={`className="px-2 py-4  font-semibold text-gray-500 transition duration-300 hover:text-green-500`}>
                         <div className="w-10 pb-2 mx-auto hover:text-primary-500">
                           {/* {item.icon} */}
                         </div>
-
                         <p className="mx-3 text-secondary-300">{item.label}</p>
                       </div>
                     </Link>

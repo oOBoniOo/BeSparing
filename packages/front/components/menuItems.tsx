@@ -15,13 +15,13 @@ const MenuItems = [
     active: true,
   },
   {
-    label: 'About Me',
+    label: 'Ahorra en Gasolina',
     url: '/about-me',
     // icon: <UserIcon />,
     active: false,
   },
   {
-    label: 'Resume',
+    label: 'Ahorra en electricidad',
     url: '/resume',
     // icon: <ResumeIcon />,
     active: false,
