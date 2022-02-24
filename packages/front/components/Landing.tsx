@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import piggy from '../public/piggy.png';
 const Landing = () => (
   <div className="container max-w-lg px-4 py-32 mx-auto text-left md:max-w-none md:text-center">
     <h1 className="text-5xl font-extrabold leading-10 tracking-tight text-left text-gray-900 md:text-center sm:leading-none md:text-6xl lg:text-7xl">
@@ -11,6 +11,7 @@ const Landing = () => (
         Usa BeSparing
       </span>
     </h1>
+    <Image src={piggy} alt="BeSparing" width={200} height={200} />
     <div className="mx-auto mt-5 text-gray-500 md:mt-12 md:max-w-lg md:text-center lg:text-lg">
       Comprueba cuanto puedes ahorrar en gastos cotidianos.
     </div>
