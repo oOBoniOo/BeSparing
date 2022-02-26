@@ -17,24 +17,29 @@ export interface iGasolinera extends Document {
   idprovincia: number;
   idccaa: number;
 }
-const schema = new Schema({
-  cp: Number,
-  direccion: String,
-  horario: String,
-  localidad: String,
-  municipio: String,
-  location: {
-    type: {type: String, default: 'Point'},
-    coordinates: { type: [Number]},
+const schema = new Schema(
+  {
+    cp: Number,
+    direccion: String,
+    horario: String,
+    localidad: String,
+    municipio: String,
+    location: {
+      type: { type: String, default: 'Point' },
+      coordinates: { type: [Number] },
+    },
+    gasoleo: Number,
+    gasolina_95: Number,
+    gasolina_98: Number,
+    provincia: String,
+    ideess: Number,
+    idmunicipio: Number,
+    idprovincia: Number,
+    idccaa: Number,
   },
-  gasoleo: Number,
-  gasolina_95: Number,
-  gasolina_98: Number,
-  provincia: String,
-  ideess: Number,
-  idmunicipio: Number,
-  idprovincia: Number,
-  idccaa: Number,
-});
-schema.index({location: '2dsphere'});
+  {
+    timestamps: true,
+  },
+);
+schema.index({ location: '2dsphere' });
 export const Gasolinera = mongoose.model<iGasolinera>('Gasolinera', schema);

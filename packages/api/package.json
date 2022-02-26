@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "seed": "nodemon src/feed/getGasolineras.ts",
+    "feed": "nodemon src/feed/getGasolineras.ts",
     "aut": "nodemon src/feed/writeAut.ts",
     "prov": "nodemon src/feed/writeProv.ts",
     "mun": "nodemon src/feed/writeMun.ts",

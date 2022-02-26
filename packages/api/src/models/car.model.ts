@@ -7,15 +7,22 @@ export interface iCar extends Document {
   version: string;
   consumo: number;
   capacidad: number;
-};
+  estado: string;
+}
 
-const schema = new Schema({
-  marca: {type: String},
-  modelo: {type: String},
-  generacion: {type: String},
-  version: {type: String},
-  consumo: {type: Number},
-  capacidad: {type: Number},
-});
+const schema = new Schema(
+  {
+    marca: { type: String },
+    modelo: { type: String },
+    generacion: { type: String },
+    version: { type: String },
+    consumo: { type: Number },
+    capacidad: { type: Number },
+    estado: { type: String, required: ['activo', 'validacion'], default: 'activo' },
+  },
+  {
+    timestamps: true,
+  },
+);
 
 export const Car = mongoose.model<iCar>('Car', schema);
