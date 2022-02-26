@@ -28,7 +28,7 @@ server.register(mainApp);
 server.register(fastifyCron, {
   jobs: [
     {
-      cronTime: '1 0 * * *', // Everyday at midnight UTC
+      cronTime: '2 * * * *', // Everyday at midnight UTC
       onTick: async (server) => {
         await getGasolineras();
       },
