@@ -5,7 +5,7 @@ import MenuItems from './menuItems';
 import Link from 'next/link';
 import piggy from '../../public/piggy.png';
 import Image from 'next/image';
-import { LoginButton } from './LoginButton';
+import { LoginButton, LoginButtonMobile } from './LoginButton';
 
 const Nav2 = () => {
   useEffect(() => {
@@ -110,7 +110,7 @@ const Nav2 = () => {
             </a>
           </li>
           <li>
-            <LoginButton />
+            <LoginButtonMobile />
           </li>
         </ul>
       </div>

@@ -43,14 +43,16 @@ export const LoginButtonMobile = () => {
     <>
       {user ? (
         <>
-          <a
-            href="/api/auth/logout"
-            className="block px-2 py-4 text-sm text-gray-500 transition duration-300 rounded hover:bg-rose-300 hover:text-gray-500"
-          >
-            LogOut
-          </a>
-          <span className="block px-2 py-4 text-sm text-rose-100">{user.email}</span>
-          <img src={user.picture} alt="userpic" className="w-8 h-8 p-2 m-2 " />
+          <div className="block pb-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300">
+            <a
+              href="/api/auth/logout"
+              className="px-2 text-sm text-gray-500 transition duration-300 rounded hover:bg-rose-300 hover:text-gray-500"
+            >
+              LogOut
+            </a>
+            <span className="px-2 text-sm text-rose-100">{user.email}</span>
+            <img src={user.picture} alt="userpic" className="inline w-10 h-10 p-2 m-2 " />
+          </div>
         </>
       ) : (
         <a
