@@ -1,14 +1,11 @@
 /* eslint-disable max-len */
 /* eslint-disable react/react-in-jsx-scope */
-import React, { useEffect } from 'react';
-import MenuItems from './menuItems';
+import React from 'react';
 import Link from 'next/link';
-import piggy from '../public/piggy.png';
-import Image from 'next/image';
 
 const Footer = () => (
   <footer className="text-center text-white bg-gray-900">
-    <div className="container px-6 pt-6">
+    <div className="container px-6 pt-6 mx-auto">
       <div className="flex justify-center mb-6">
         <a
           href="#!"
@@ -141,52 +138,6 @@ const Footer = () => (
             ></path>
           </svg>
         </a>
-      </div>
-
-      <div>
-        <form action="">
-          <div className="flex grid items-center justify-center gap-4 md:grid-cols-3 gird-cols-1">
-            <div className="md:ml-auto md:mb-6">
-              <p className="">
-                <strong>Sign up for our newsletter</strong>
-              </p>
-            </div>
-
-            <div className="md:mb-6">
-              <input
-                type="text"
-                className="
-                form-control
-                block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-              "
-                id="exampleFormControlInput1"
-                placeholder="Email address"
-              />
-            </div>
-
-            <div className="mb-6 md:mr-auto">
-              <button
-                type="submit"
-                className="inline-block px-6 py-2 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out border-2 border-white rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
 
       <div className="mb-6">
