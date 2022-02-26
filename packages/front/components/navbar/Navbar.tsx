@@ -5,6 +5,7 @@ import MenuItems from './menuItems';
 import Link from 'next/link';
 import piggy from '../../public/piggy.png';
 import Image from 'next/image';
+import { LoginButton } from './LoginButton';
 
 const Nav2 = () => {
   useEffect(() => {
@@ -50,20 +51,7 @@ const Nav2 = () => {
             </div>
           </div>
           {/* <!-- Secondary Navbar items --> */}
-          <div className="items-center hidden space-x-3 md:flex ">
-            <a
-              href=""
-              className="px-2 py-2 font-medium text-gray-500 transition duration-300 rounded hover:bg-rose-300 hover:text-gray-500"
-            >
-              Log In
-            </a>
-            <a
-              href=""
-              className="px-2 py-2 font-medium text-gray-500 transition duration-300 rounded hover:bg-rose-300 hover:text-gray-500"
-            >
-              Sign Up
-            </a>
-          </div>
+          <LoginButton />
           {/* <!-- Mobile menu button --> */}
           <div className="flex items-center md:hidden">
             <button className="outline-none mobile-menu-button">
