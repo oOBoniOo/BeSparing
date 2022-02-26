@@ -9,7 +9,7 @@ export const LoginButton = () => {
   if (error) return <div>{error.message}</div>;
   console.log(user);
   return (
-    <div className="items-center hidden space-x-3 md:flex ">
+    <>
       {user ? (
         <>
           <a
@@ -29,6 +29,37 @@ export const LoginButton = () => {
           Log In
         </a>
       )}
-    </div>
+    </>
+  );
+};
+
+export const LoginButtonMobile = () => {
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+  console.log(user);
+  return (
+    <>
+      {user ? (
+        <>
+          <a
+            href="/api/auth/logout"
+            className="block px-2 py-4 text-sm text-gray-500 transition duration-300 rounded hover:bg-rose-300 hover:text-gray-500"
+          >
+            LogOut
+          </a>
+          <span className="block px-2 py-4 text-sm text-rose-100">{user.email}</span>
+          <img src={user.picture} alt="userpic" className="w-8 h-8 p-2 m-2 " />
+        </>
+      ) : (
+        <a
+          href="/api/auth/login"
+          className="block px-2 py-4 text-sm text-gray-500 transition duration-300 rounded text-smpx-2 hover:bg-rose-300 hover:text-gray-500"
+        >
+          Log In
+        </a>
+      )}
+    </>
   );
 };

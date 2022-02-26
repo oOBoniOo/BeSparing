@@ -50,8 +50,11 @@ const Nav2 = () => {
               })}
             </div>
           </div>
+          <div className="items-center hidden space-x-3 md:flex ">
+            <LoginButton />
+          </div>
           {/* <!-- Secondary Navbar items --> */}
-          <LoginButton />
+
           {/* <!-- Mobile menu button --> */}
           <div className="flex items-center md:hidden">
             <button className="outline-none mobile-menu-button">
@@ -105,6 +108,9 @@ const Nav2 = () => {
             >
               Contact Us
             </a>
+          </li>
+          <li>
+            <LoginButton />
           </li>
         </ul>
       </div>
