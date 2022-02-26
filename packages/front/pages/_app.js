@@ -1,13 +1,14 @@
 import React from 'react';
 import '../styles/globals.css';
-import Navbar from '../components/Navbar';
-import Nav2 from '../components/Nav2';
-import Footer from '../components/Footer';
+// import Navbar from '../components/navbar/Navbar';
+// import Footer from '../components/Footer';
+import Layout from '../components/Layout';
+
 const MyApp = ({ Component, pageProps }) => (
   <>
-    <Nav2 />
-    <Component {...pageProps} />
-    <Footer />
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   </>
 );
 

@@ -3,8 +3,7 @@
 import React, { useEffect } from 'react';
 import MenuItems from './menuItems';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import piggy from '../public/piggy.png';
+import piggy from '../../public/piggy.png';
 import Image from 'next/image';
 
 const Nav2 = () => {
@@ -24,8 +23,8 @@ const Nav2 = () => {
             <div>
               {/* <!-- Website Logo --> */}
               <Link href="/">
-                <div className="inline-block w-10 h-10 p-2 m-2 overflow-hidden rounded-full ring-4 ring-rose-200 ring-offset-4">
-                  <Image src={piggy} alt="Logo" width={50} height={50} />
+                <div className="inline-block w-12 h-12 p-2 m-2 ">
+                  <Image src={piggy} alt="Logo" width={60} height={60} />
                 </div>
               </Link>
             </div>
