@@ -7,7 +7,7 @@ import piggy from '../../public/piggy.png';
 import Image from 'next/image';
 import { LoginButton, LoginButtonMobile } from './LoginButton';
 
-const Nav2 = () => {
+const Navbar = () => {
   useEffect(() => {
     const btn = document.querySelector('button.mobile-menu-button');
     const menu = document.querySelector('.mobile-menu');
@@ -118,4 +118,4 @@ const Nav2 = () => {
   );
 };
 
-export default Nav2;
+export default Navbar;
