@@ -6,6 +6,7 @@ import Link from 'next/link';
 import piggy from '../../public/piggy.png';
 import Image from 'next/image';
 import { LoginButton, LoginButtonMobile } from './LoginButton';
+import { MenuLinks } from './MenuLinks';
 
 const Navbar = () => {
   useEffect(() => {
@@ -24,30 +25,14 @@ const Navbar = () => {
             <div>
               {/* <!-- Website Logo --> */}
               <Link href="/">
-                <div className="inline-block w-12 h-12 p-2 m-2 ">
+                <div className="inline-block w-12 h-12 p-2 m-2 cursor-pointer ">
                   <Image src={piggy} alt="Logo" width={60} height={60} />
                 </div>
               </Link>
             </div>
             {/* <!-- Primary Navbar items --> */}
             <div className="items-center hidden space-x-1 md:flex">
-              {MenuItems.map((item, index) => {
-                console.log(item.url);
-                return (
-                  <>
-                    <Link href={item.url} key={index}>
-                      <div
-                        className={`className="px-2 py-4  font-semibold text-gray-500 transition duration-300 hover:text-rose-200`}
-                      >
-                        <div className="w-10 pb-2 mx-auto hover:text-primary-500">
-                          {/* {item.icon} */}
-                        </div>
-                        <p className="mx-3 text-secondary-300">{item.label}</p>
-                      </div>
-                    </Link>
-                  </>
-                );
-              })}
+              <MenuLinks />
             </div>
           </div>
           <div className="items-center hidden space-x-3 md:flex ">
@@ -87,10 +72,10 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="#services"
+              href="/gasolina"
               className="block px-2 py-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300"
             >
-              Services
+              Ahorra en gasolina
             </a>
           </li>
           <li>
@@ -98,7 +83,7 @@ const Navbar = () => {
               href="#about"
               className="block px-2 py-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300"
             >
-              About
+              Ahorra en electicidad
             </a>
           </li>
           <li>
@@ -106,7 +91,7 @@ const Navbar = () => {
               href="#contact"
               className="block px-2 py-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300"
             >
-              Contact Us
+              Contacto
             </a>
           </li>
           <li>

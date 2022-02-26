@@ -16,15 +16,15 @@ const MenuItems = [
   },
   {
     label: 'Ahorra en Gasolina',
-    url: '/about-me',
+    url: '/gasolina',
     // icon: <UserIcon />,
-    active: false,
+    active: true,
   },
   {
     label: 'Ahorra en electricidad',
     url: '/resume',
     // icon: <ResumeIcon />,
-    active: false,
+    active: true,
   },
   {
     label: 'Contact',
