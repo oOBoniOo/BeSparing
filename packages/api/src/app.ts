@@ -1,14 +1,15 @@
 import { FastifyPluginAsync } from 'fastify';
 import fastifyCors from 'fastify-cors';
-// import { conectDB } from './lib/db';
+import fastifyAuth0 from 'fastify-auth0-verify';
+
 import { mainRouter } from './routers/mainRouter';
-import {autRouter} from './routers/aut.router';
+import { autRouter } from './routers/aut.router';
 import { conectDB } from './lib/dbConnect';
 import { provRouter } from './routers/prov.router';
 import { munRouter } from './routers/mun.router';
 import { stationsRouter } from './routers/station.router';
 import { carRouter } from './routers/car.router';
-
+import { AUTH0 } from './config';
 export const mainApp: FastifyPluginAsync = async (app) => {
   conectDB();
 
@@ -29,11 +30,25 @@ export const mainApp: FastifyPluginAsync = async (app) => {
     },
   });
 
+  // Implementacion de la autenticacion con auth0
+
+  await app.register(fastifyAuth0, {
+    domain: AUTH0.DOMAIN,
+    audience: AUTH0.AUDIENCE,
+  });
+
+  app.get('/verify', {
+    handler(request, reply) {
+      reply.send(request.user);
+    },
+    preValidation: app.authenticate,
+  });
+
   app.register(mainRouter);
-  app.register(autRouter, {prefix: '/api/aut'});
-  app.register(provRouter, {prefix: '/api/prov'});
-  app.register(munRouter, {prefix: '/api/mun'});
-  app.register(carRouter, {prefix: '/api/car'});
+  app.register(autRouter, { prefix: '/api/aut' });
+  app.register(provRouter, { prefix: '/api/prov' });
+  app.register(munRouter, { prefix: '/api/mun' });
+  app.register(carRouter, { prefix: '/api/car' });
   // app.register(userRouter, {prefix:'/user'});
-  app.register(stationsRouter, {prefix: '/api/stations'});
+  app.register(stationsRouter, { prefix: '/api/stations' });
 };
