@@ -37,6 +37,7 @@ export const mainApp: FastifyPluginAsync = async (app) => {
     audience: AUTH0.AUDIENCE,
   });
 
+  // la ruta de veryfy la hes puesto en main Router.
   app.get('/verify', {
     handler(request, reply) {
       reply.send(request.user);
