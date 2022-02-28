@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from 'fastify';
 import fastifyCors from 'fastify-cors';
 import fastifyAuth0 from 'fastify-auth0-verify';
-
+import formBodyPlugin from 'fastify-formbody';
 import { mainRouter } from './routers/mainRouter';
 import { autRouter } from './routers/aut.router';
 import { conectDB } from './lib/dbConnect';
@@ -10,6 +10,8 @@ import { munRouter } from './routers/mun.router';
 import { stationsRouter } from './routers/station.router';
 import { carRouter } from './routers/car.router';
 import { AUTH0 } from './config';
+import { usersRouter } from './routers/user.router';
+
 export const mainApp: FastifyPluginAsync = async (app) => {
   conectDB();
 
@@ -45,11 +47,13 @@ export const mainApp: FastifyPluginAsync = async (app) => {
     preValidation: app.authenticate,
   });
 
+  app.register(formBodyPlugin);
+
   app.register(mainRouter);
   app.register(autRouter, { prefix: '/api/aut' });
   app.register(provRouter, { prefix: '/api/prov' });
   app.register(munRouter, { prefix: '/api/mun' });
   app.register(carRouter, { prefix: '/api/car' });
-  // app.register(userRouter, {prefix:'/user'});
+  app.register(usersRouter, { prefix: '/api/user' });
   app.register(stationsRouter, { prefix: '/api/stations' });
 };

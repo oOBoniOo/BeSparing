@@ -15,9 +15,11 @@
     "@types/react": "^17.0.39",
     "@types/react-transition-group": "^4.4.4",
     "dotenv": "^16.0.0",
+    "google-map-react": "^2.1.10",
     "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-styled-components": "^0.1.11",
     "react-sweet-state": "^2.5.2",
     "react-transition-group": "^4.4.2"
   },

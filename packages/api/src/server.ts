@@ -38,7 +38,7 @@ server.register(fastifyCron, {
 
 const start = async () => {
   try {
-    await server.listen(PORT, '0.0.0.0');
+    await server.listen(PORT);
     server.cron.startAllJobs();
     server.log.info('listening at port: ', PORT);
   } catch (err) {
