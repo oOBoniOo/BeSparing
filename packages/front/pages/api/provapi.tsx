@@ -1,5 +1,5 @@
 import { getAccessToken, withApiAuthRequired } from '@auth0/nextjs-auth0';
-import { apiClient } from '../../lib/apiReq';
+import { apiClient } from '../../lib/api/apiReq';
 
 export default withApiAuthRequired(async function products(req, res) {
   // If your Access Token is expired and you have a Refresh Token

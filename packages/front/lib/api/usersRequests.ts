@@ -8,7 +8,7 @@ export const addUser = async (user: UserProfile) => {
   const { sub } = user;
   console.log('USER ID ES : ', sub);
   const res = await apiClient.post('/add', { userid: sub });
-  return true;
+  return res;
 };
 
 export const checkUser = async () => {};
