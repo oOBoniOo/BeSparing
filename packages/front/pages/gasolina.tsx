@@ -5,28 +5,31 @@ import SimpleMap from '../components/Map/Mapa';
 
 const Gasolina = () => {
   const { user } = useUser();
-  console.log('tsx gasolina', user);
-  return (
-    <>
-      <div className='container'>FILTROS</div>
-      <div className='grid grid-cols-3 gap-2'>
-        <div className='col-span-2 p-10 bg-white rounded'>
-          <SimpleMap />
+  if (user) {
+    return (
+      <>
+        <div className='container'>FILTROS</div>
+        <div className='grid grid-cols-3 gap-2'>
+          <div className='col-span-2 p-10 bg-white rounded'>
+            <SimpleMap />
+          </div>
+          <div className='grid grid-cols-3 grid-rows-3 gap-2 py-10'>
+            <MapCard />
+            <MapCard />
+            <MapCard />
+            <MapCard />
+            <MapCard />
+            <MapCard />
+            <MapCard />
+            <MapCard />
+            <MapCard />
+          </div>
         </div>
-        <div className='grid grid-cols-3 grid-rows-3 gap-2 py-10'>
-          <MapCard />
-          <MapCard />
-          <MapCard />
-          <MapCard />
-          <MapCard />
-          <MapCard />
-          <MapCard />
-          <MapCard />
-          <MapCard />
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return <h1> No logeado </h1>;
+  }
 };
 
 export default Gasolina;

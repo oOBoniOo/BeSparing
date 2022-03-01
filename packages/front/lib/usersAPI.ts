@@ -1,10 +1,13 @@
+import { UserProfile } from '@auth0/nextjs-auth0';
 import axios from 'axios';
 
-export const apiClient = axios.create({ baseURL: 'http://0.0.0.0:1234/api' });
+export const apiClient = axios.create({ baseURL: 'http://localhost:1234/api' });
 
-export const addUser = async (user) => {
+export const addUser = async (user: UserProfile) => {
   console.log(user);
-  const res = await apiClient.post(`/user/add?id=${user.sub}`);
+  const { sub } = user;
+  console.log(sub);
+  const res = await apiClient.post('/add', { userid: sub });
   console.log(res);
 };
 

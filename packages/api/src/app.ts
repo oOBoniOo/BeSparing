@@ -19,18 +19,22 @@ export const mainApp: FastifyPluginAsync = async (app) => {
   // app.register(fastifyCors, {
   //   // put your options here
   // });
-
-  app.register(fastifyCors, {
-    origin: (origin, cb) => {
-      if (/localhost/.test(origin)) {
-        //  Request from localhost will pass
-        cb(null, true);
-        return;
-      }
-      // Generate an error on other origins, disabling access
-      cb(null, false);
-    },
+  app.register(require('fastify-cors'), {
+    origin: '*',
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization'],
+    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
   });
+  // app.register(fastifyCors, {
+  //   origin: (origin, cb) => {
+  //     if (/localhost/.test(origin)) {
+  //       //  Request from localhost will pass
+  //       cb(null, true);
+  //       return;
+  //     }
+  //     // Generate an error on other origins, disabling access
+  //     cb(null, false);
+  //   },
+  // });
 
   // Implementacion de la autenticacion con auth0
 

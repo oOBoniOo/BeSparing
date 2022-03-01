@@ -1,6 +1,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 
+// Cuando tengamos datos, introduciremos marcadores ene l mapa
 const Marker = ({ lat, lng, text }) => <div>{text}</div>;
 
 const defaultProps = {
@@ -10,13 +11,14 @@ const defaultProps = {
   },
   zoom: 13,
 };
+const mKey = process.env.MAP_KEY;
 
 const SimpleMap = () => {
   return (
     // Important! Always set the container height explicitly
     <div style={{ height: '100%', width: '100%' }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyASdnEi1o7fFBbVA5VaeJiNV8hrDBX9is0' }}
+        bootstrapURLKeys={{ key: mKey }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}>
         <Marker lat lng text='My Marker' />
