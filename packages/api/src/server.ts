@@ -2,8 +2,8 @@ import fastify from 'fastify';
 import { mainApp } from './app';
 import { PORT } from './config';
 import pino from 'pino';
-import fastifyCron from 'fastify-cron';
-import { getGasolineras } from './feed/getGasolineras';
+// import fastifyCron from 'fastify-cron';
+// import { getGasolineras } from './feed/getGasolineras';
 
 const logger = pino({
   name: 'Fastify-Pretty-Config',

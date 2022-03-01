@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+import _ from 'lodash';
 import axios from 'axios';
 import { URL_GASOFA } from '../config';
 import { conectDB } from '../lib/dbConnect';
@@ -41,8 +42,8 @@ export const getGasolineras = async () => {
         cp: gas['C.P.'],
         direccion: gas['Dirección'],
         horario: gas['Horario'],
-        localidad: gas['Localidad'],
-        municipio: gas['Municipio'],
+        localidad: _.capitalize(_.deburr(gas['Localidad'])),
+        municipio: _.capitalize(_.deburr(gas['Municipio'])),
         location: coordes,
         gasoleo: parseFloat(gasoleo ? gasoleo : 0),
         gasolina_95: parseFloat(gasolina ? gasolina : 0),
