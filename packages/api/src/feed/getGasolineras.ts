@@ -56,6 +56,6 @@ export const getGasolineras = async () => {
     }),
   );
 
-  // await close();
+  await close();
 };
 getGasolineras();

@@ -45,7 +45,7 @@ const getStationsByCP = async (request: Myrequest, reply: FastifyReply) => {
   });
 };
 
-const getAut = async (request: Myrequest, reply: FastifyReply) => {
+const getByAut = async (request: Myrequest, reply: FastifyReply) => {
   const { id } = request.params;
   const query = { idccaa: id };
   const stations = await Gasolinera.find(query).lean();
@@ -56,7 +56,7 @@ const getAut = async (request: Myrequest, reply: FastifyReply) => {
   });
 };
 
-const getProv = async (request: Myrequest, reply: FastifyReply) => {
+const getByProv = async (request: Myrequest, reply: FastifyReply) => {
   const { id } = request.params;
   const query = { idprovincia: id };
   const stations = await Gasolinera.find(query).lean();
@@ -70,6 +70,6 @@ const getProv = async (request: Myrequest, reply: FastifyReply) => {
 export const stationsRouter: FastifyPluginAsync = async (app) => {
   app.get('/', getNearStations);
   app.get('/cp', getStationsByCP);
-  app.get('/autonomia/:id', getAut);
-  app.get('/provincia/:id', getProv);
+  app.get('/autonomia/:id', getByAut);
+  app.get('/provincia/:id', getByProv);
 };
