@@ -3,18 +3,18 @@ import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
 import { Gasolinera } from '../models/gasolinera.model';
 
 type Myrequest = FastifyRequest<{
-  Querystring: { long:number, lat:number },
-}>
+  Querystring: { long: number; lat: number; cp: string };
+  Params: { id: string };
+}>;
 
-
-const getNearStations = async (request:Myrequest, reply: FastifyReply) => {
+const getNearStations = async (request: Myrequest, reply: FastifyReply) => {
   let { long, lat } = request.query;
   long = parseFloat(long.toString());
   lat = parseFloat(lat.toString());
 
   const query = {
-    'location': {
-      '$near': {
+    location: {
+      $near: {
         type: 'Point',
         coordinates: [lat, long],
         $maxDistance: 1000,
@@ -31,9 +31,45 @@ const getNearStations = async (request:Myrequest, reply: FastifyReply) => {
   });
 };
 
+const getStationsByCP = async (request: Myrequest, reply: FastifyReply) => {
+  const { cp } = request.query;
+  const min = parseInt(cp) - 5;
+  const max = parseInt(cp) + 5;
+  console.log('MAX ', max, 'MIN', min);
+  const query = { $and: [{ cp: { $gt: min } }, { cp: { $lt: max } }] };
+  const stations = await Gasolinera.find(query).lean();
+  reply.send({
+    status: 'listado de gasolineras: OK',
+    cp,
+    stations,
+  });
+};
 
-export const stationsRouter: FastifyPluginAsync = async (app) =>{
+const getAut = async (request: Myrequest, reply: FastifyReply) => {
+  const { id } = request.params;
+  const query = { idccaa: id };
+  const stations = await Gasolinera.find(query).lean();
+  reply.send({
+    status: 'listado de gasolineras: OK',
+    id,
+    stations,
+  });
+};
+
+const getProv = async (request: Myrequest, reply: FastifyReply) => {
+  const { id } = request.params;
+  const query = { idprovincia: id };
+  const stations = await Gasolinera.find(query).lean();
+  reply.send({
+    status: 'listado de gasolineras: OK',
+    id,
+    stations,
+  });
+};
+
+export const stationsRouter: FastifyPluginAsync = async (app) => {
   app.get('/', getNearStations);
-//   app.get('/porautonomia', getAutMunicipios);
-//   app.get('/porprovincia', getProvMunicipios);
+  app.get('/cp', getStationsByCP);
+  app.get('/autonomia/:id', getAut);
+  app.get('/provincia/:id', getProv);
 };

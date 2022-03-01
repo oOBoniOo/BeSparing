@@ -29,8 +29,8 @@ export const getGasolineras = async () => {
       const coordes = {
         type: 'Point',
         coordinates: [
-          parseFloat(gas['Longitud (WGS84)'].replace(/,/g, '.')),
           parseFloat(gas['Latitud'].replace(/,/g, '.')),
+          parseFloat(gas['Longitud (WGS84)'].replace(/,/g, '.')),
         ],
       };
       gas.coords = coordes;
@@ -56,5 +56,6 @@ export const getGasolineras = async () => {
     }),
   );
 
-  await close();
+  // await close();
 };
+getGasolineras();

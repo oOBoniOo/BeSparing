@@ -25,21 +25,21 @@ const server = fastify({
 
 server.register(mainApp);
 
-server.register(fastifyCron, {
-  jobs: [
-    {
-      cronTime: '2 * * * *', // Everyday at midnight UTC
-      onTick: async (server) => {
-        await getGasolineras();
-      },
-    },
-  ],
-});
+// server.register(fastifyCron, {
+//   jobs: [
+//     {
+//       cronTime: '2 * * * *', // Everyday at midnight UTC
+//       onTick: async (server) => {
+//         await getGasolineras();
+//       },
+//     },
+//   ],
+// });
 
 const start = async () => {
   try {
     await server.listen(PORT, '127.0.0.1');
-    server.cron.startAllJobs();
+    // server.cron.startAllJobs();
     server.log.info('listening at port: ', PORT);
   } catch (err) {
     server.log.error(err);

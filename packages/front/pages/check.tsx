@@ -1,19 +1,18 @@
 import { UserProfile, useUser } from '@auth0/nextjs-auth0';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { addUser } from '../lib/usersAPI';
 
 const CheckUserInDB = () => {
-  console.log('DENTRO DEL CHECK');
-  const { user } = useUser();
-  console.log('USUARIO FUERA: ', user);
+  const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+  console.log('USUARIO EN PAG CHECK: ', user);
   const peticion = async (user: UserProfile) => {
-    console.log('EL USER ES : ', user);
+    console.log('EL USER DENTRO DE PETICION ES : ', user);
     await addUser(user);
     return true;
   };
-  useEffect(() => {
-    peticion(user);
-  }, [user]);
+  peticion(user);
 
   return (
     <>
