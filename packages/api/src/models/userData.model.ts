@@ -16,11 +16,11 @@ export interface iUser extends Document {
 const schema = new Schema(
   {
     userId: { type: String, unique: true, required: true },
-    cp: Number,
+    cp: { type: Number, default: 0 },
     carbData: {
-      tipo: String,
-      capacidad: Number,
-      consumo: Number,
+      tipo: { type: String, default: '' },
+      capacidad: { type: Number, default: 0 },
+      consumo: { type: Number, default: 0 },
     },
     eData: {
       coste: [],

@@ -4,12 +4,12 @@ import { User } from '../models/userData.model';
 
 type MyRequest = FastifyRequest<{
   Body: { userid: string };
-  Querystring: { receta_id: string };
+  Params: { userid: string };
 }>;
 
 const addUser = async (request: MyRequest, reply: FastifyReply) => {
   console.log('ENTRAMOS A CREAR USER');
-  console.log(request);
+  console.log('REQUEST***************', request.body);
   const { userid } = request.body;
   User.create({ userId: userid })
     .then((data) => {
@@ -22,7 +22,7 @@ const addUser = async (request: MyRequest, reply: FastifyReply) => {
       console.log(error);
       request.log.info(error);
     });
-  reply.redirect('/');
+  reply.send(userid);
 };
 
 export const usersRouter: FastifyPluginAsync = async (app) => {
