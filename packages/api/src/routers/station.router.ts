@@ -3,7 +3,7 @@ import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
 import { Gasolinera } from '../models/gasolinera.model';
 
 type Myrequest = FastifyRequest<{
-  Querystring: { long: number; lat: number; cp: string };
+  Querystring: { long: number; lat: number; cp: string; nombre: string };
   Params: { id: string };
 }>;
 
@@ -67,9 +67,22 @@ const getByProv = async (request: Myrequest, reply: FastifyReply) => {
   });
 };
 
+const getByMunName = async (request: Myrequest, reply: FastifyReply) => {
+  const { nombre } = request.query;
+  const query = { municipio: nombre };
+  const stations = await Gasolinera.find(query).lean();
+  reply.send({
+    status: 'listado de gasolineras: OK',
+    nombre,
+    stations,
+  });
+};
+
 export const stationsRouter: FastifyPluginAsync = async (app) => {
   app.get('/', getNearStations);
   app.get('/cp', getStationsByCP);
   app.get('/autonomia/:id', getByAut);
   app.get('/provincia/:id', getByProv);
+  app.get('/municipio', getByMunName);
+  // app.get('/provincia', getByProvName);
 };

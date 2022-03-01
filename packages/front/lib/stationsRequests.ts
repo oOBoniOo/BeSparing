@@ -13,3 +13,18 @@ export const getByCodeStations = async (cp) => {
   console.log('desde el api front', stations.data.stations);
   return stations.data.stations;
 };
+
+export const getByCity = async (nombre: string) => {
+  const stations = await apiClient.get(`/stations/municipio?${nombre}`);
+  return stations.data.stations;
+};
+
+export const getByAutCod = async (id: number) => {
+  const stations = await apiClient.get(`/stations/autonomia/${id}`);
+  return stations.data.stations;
+};
+
+export const getByProvCod = async (id: number) => {
+  const stations = await apiClient.get(`/stations/provincia/${id}`);
+  return stations.data.stations;
+};
