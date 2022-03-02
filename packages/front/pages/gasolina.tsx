@@ -1,7 +1,7 @@
 import { useUser } from '@auth0/nextjs-auth0';
 import React from 'react';
-import MapCard from '../components/Map/Card';
-import SimpleMap from '../components/Map/Mapa';
+import MapCard from '../components/map/Card';
+import SimpleMap from '../components/map/Mapa';
 
 const Gasolina = () => {
   const { user, error, isLoading } = useUser();

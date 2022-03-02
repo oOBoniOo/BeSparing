@@ -5,6 +5,7 @@ import { User } from '../models/userData.model';
 type MyRequest = FastifyRequest<{
   Body: { userid: string };
   Params: { userid: string };
+  Querystring: { userid: string };
 }>;
 
 const addUser = async (request: MyRequest, reply: FastifyReply) => {
@@ -25,8 +26,14 @@ const addUser = async (request: MyRequest, reply: FastifyReply) => {
   reply.send(userid);
 };
 
+const findUser = async (request: MyRequest, reply: FastifyReply) => {
+  const { userid } = request.query;
+  const res = await User.find({ userid });
+  reply.send('OK');
+};
+
 export const usersRouter: FastifyPluginAsync = async (app) => {
   app.post('/add', addUser);
-  //   app.get('/porautonomia', getAutMunicipios);
+  app.get('/find', findUser);
   //   app.get('/porprovincia', getProvMunicipios);
 };

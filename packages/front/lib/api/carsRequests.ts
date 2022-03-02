@@ -4,6 +4,7 @@ const apiClient = axios.create({ baseURL: 'http://127.0.0.1:1234/api' });
 
 export const getMarcas = async () => {
   const marcas = await apiClient.get(`/car/marcas`);
+  console.log('DESDE LA PETICION', marcas.data.data);
   return marcas.data.data;
 };
 
@@ -13,17 +14,29 @@ export const getModelos = async (marca: string) => {
 };
 
 export const getGen = async (marca: string, modelo: string) => {
-  const stations = await apiClient.get(`/car/generaciones?marca=${marca}modelo=${modelo}`);
-  return stations.data.stations;
+  const gens = await apiClient.get(`/car/generaciones?marca=${marca}&modelo=${modelo}`);
+  return gens.data.data;
 };
 
 export const getVersions = async (marca: string, modelo: string, generacion: string) => {
-  const stations = await apiClient.get(
+  const versions = await apiClient.get(
     `/car/versiones?marca=${marca}&modelo=${modelo}&generacion=${generacion}`,
   );
-  return stations.data.stations;
+  return versions.data.data;
 };
 
+export const getCar = async (
+  marca: string,
+  modelo: string,
+  generacion: string,
+  version: string,
+) => {
+  const res = await apiClient.get(
+    `/car/data?marca=${marca}&modelo=${modelo}&generacion=${generacion}&version=${version}`,
+  );
+  console.log('RES EN PETICION DE FRONT', res.data);
+  return res.data.data ? res.data.data[0] : {};
+};
 // export const getByProvCod = async (id: number) => {
 //   const stations = await apiClient.get(`/stations/provincia/${id}`);
 //   return stations.data.stations;

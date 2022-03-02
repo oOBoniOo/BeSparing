@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export const ItemSelect = ({ lista, funcion }) => {
-  console.log('DENTRO ITEM', lista);
+export const ItemSelect = ({ lista, funcion, seleccion }) => {
   useEffect(() => {
     console.log(lista);
   }, []);
@@ -29,7 +28,7 @@ export const ItemSelect = ({ lista, funcion }) => {
           name='marca'
           value='{seleciona}'
           onChange={funcion}>
-          <option selected>Open this select menu</option>
+          <option selected>{seleccion}</option>
           {lista.map((elemento, key) => {
             return (
               <option key={key} value={elemento}>
@@ -46,5 +45,6 @@ export const ItemSelect = ({ lista, funcion }) => {
 ItemSelect.propTypes = {
   lista: PropTypes.array,
   funcion: PropTypes.func,
+  seleccion: PropTypes.string,
 };
 ItemSelect.defaultProps = {};
