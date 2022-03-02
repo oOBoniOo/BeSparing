@@ -23,6 +23,7 @@
     "react-styled-components": "^0.1.11",
     "react-sweet-state": "^2.5.2",
     "react-transition-group": "^4.4.2",
+    "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1"
   },
