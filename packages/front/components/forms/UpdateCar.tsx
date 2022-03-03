@@ -63,7 +63,7 @@ export const UpdateCar = () => {
       w-full
       px-6
       py-2.5
-      bg-blue-600
+      bg-rose-300
       text-white
       font-medium
       text-xs
@@ -71,7 +71,7 @@ export const UpdateCar = () => {
       uppercase
       rounded
       shadow-md
-      hover:bg-blue-700 hover:shadow-lg
+      hover:bg-gray-900 hover:shadow-lg
       focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
       active:bg-blue-800 active:shadow-lg
       transition
