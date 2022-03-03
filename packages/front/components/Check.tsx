@@ -1,8 +1,9 @@
 import { useUser } from '@auth0/nextjs-auth0';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getUserData } from '../lib/redux/userAtcions';
+import { Redirect } from 'react-router';
 
 export const Check = () => {
   const { user, error, isLoading } = useUser();
@@ -14,9 +15,8 @@ export const Check = () => {
   const checkUs = async (email) => {
     dispatch(getUserData(email));
   };
-  return (
-    <button type='button' onClick={() => checkUs(user.email)}>
-      HOLA
-    </button>
-  );
+  useEffect(() => {
+    checkUs(user.email);
+  }, []);
+  return <></>;
 };

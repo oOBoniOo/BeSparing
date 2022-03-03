@@ -2,12 +2,25 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import piggy from '../public/piggy.png';
 import { useUser } from '@auth0/nextjs-auth0';
+import { useDispatch } from 'react-redux';
+import { getUserData } from '../lib/redux/userAtcions';
 
 export const ContentButton = () => {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
+  const dispatch = useDispatch();
+
+  const checkUs = async (email) => {
+    dispatch(getUserData(email));
+  };
+  useEffect(() => {
+    if (user) {
+      checkUs(user.email);
+    }
+  }, []);
+
   return (
     <>
       {user ? (
