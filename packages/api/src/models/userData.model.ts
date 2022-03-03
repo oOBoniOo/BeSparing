@@ -1,26 +1,26 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface iUser extends Document {
+  email: string;
   userId: string;
   cp?: number;
-  municipio: string;
-  carbData: {
-    tipo: string;
+  municipio?: string;
+  carbData?: {
     capacidad: number;
     consumo: number;
   };
-  eData: {
+  eData?: {
     coste: number[];
   };
 }
 
 const schema = new Schema(
   {
-    userId: { type: String, unique: true, required: true },
+    email: { type: String, unique: true, required: true },
+    userId: { type: String, unique: true },
     cp: { type: Number, default: 0 },
     municipio: { type: String, default: '' },
     carbData: {
-      tipo: { type: String, default: '' },
       capacidad: { type: Number, default: 0 },
       consumo: { type: Number, default: 0 },
     },

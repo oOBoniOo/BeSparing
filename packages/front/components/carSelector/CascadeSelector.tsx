@@ -9,10 +9,10 @@ import { TarjetaCar } from './TarjetaCar';
 
 export const CascadeSelect = ({}) => {
   const [state, setState] = useState({
-    marca: '',
-    modelo: '',
-    generacion: '',
-    version: '',
+    marca: 'Marca',
+    modelo: 'Modelo',
+    generacion: 'Generacion',
+    version: 'Version',
     marcasData: [],
     modelosData: [],
     gensData: [],
@@ -108,7 +108,7 @@ export const CascadeSelect = ({}) => {
       {state.generacion && (
         <ItemSelect lista={state.versionsData} funcion={changeVersion} seleccion={state.version} />
       )}
-      {state.version && state.carData && <TarjetaCar state={state} />}
+      {state.version != 'Version' && state.carData && <TarjetaCar state={state} />}
 
       {state.version && !state.carData && <UpdateCar />}
     </div>

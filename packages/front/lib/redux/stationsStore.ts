@@ -7,7 +7,7 @@ const initialState = {
 };
 
 function stationsReducer(state = initialState, action) {
-  console.log(state);
+  console.log('STATIONSSTORE', state);
   console.log(action);
   return state;
 }

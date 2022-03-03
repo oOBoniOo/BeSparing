@@ -1,0 +1,5 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.glyphMargin": false,
+  "prettier.printWidth": 100
+}

@@ -26,7 +26,7 @@ export const ItemSelect = ({ lista, funcion, seleccion }) => {
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
           aria-label='Default select example'
           name='marca'
-          value='{seleciona}'
+          value={seleccion ? seleccion : 'elige'}
           onChange={funcion}>
           <option selected>{seleccion}</option>
           {lista.map((elemento, key) => {
@@ -47,4 +47,6 @@ ItemSelect.propTypes = {
   funcion: PropTypes.func,
   seleccion: PropTypes.string,
 };
-ItemSelect.defaultProps = {};
+ItemSelect.defaultProps = {
+  seleccion: 'Selecciona',
+};
