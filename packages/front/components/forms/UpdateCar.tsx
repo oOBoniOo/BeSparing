@@ -4,10 +4,7 @@ export const UpdateCar = () => {
   return (
     <div className='flex justify-center'>
       <div className='block max-w-md p-6 bg-white rounded-lg shadow-lg'>
-        <h3>
-          No hemos encontrado informacion para este vehiculo, por favor introduce los datos
-          manualmente
-        </h3>
+        <h3>Datos incorrectos o inexistentes, Introduce nuevos datos</h3>
         <form>
           <div className='grid grid-cols-2 gap-4'>
             <div className='mb-6 form-group'>

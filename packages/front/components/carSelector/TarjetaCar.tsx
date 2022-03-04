@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UpdateCar } from '../forms/UpdateCar';
 
 export const TarjetaCar = ({ state }) => {
+  const [needUpdate, setNeedUpdate] = useState(false);
   const updateCarData = () => {
     console.log('APRETEISION THE BUTTONESION');
-    return (
-      <div>
-        <UpdateCar />
-      </div>
-    );
+    setNeedUpdate(true);
   };
   const updateUserData = () => {};
   return (
@@ -37,6 +34,7 @@ export const TarjetaCar = ({ state }) => {
           onClick={() => {
             updateCarData();
           }}>
+          {needUpdate && <UpdateCar />}
           Datos incorrectos
         </button>
       </div>
