@@ -7,14 +7,11 @@ import _ from 'lodash';
 export const SearchBox = ({ message }) => {
   const [municipios, setMunicipios] = useState([]);
 
-  const getDataFromAPI = async (e) => {
-    console.log('Options Fetched from API');
+  const getDataFromAPI = async (e, value) => {
+    console.log(value);
     const muns = await getMunsMatch(_.capitalize(e.target.value));
-    console.log(muns);
     setMunicipios(muns);
   };
-
-  const updateMun = () => {};
 
   return (
     <div className='flex justify-center'>
@@ -40,6 +37,7 @@ export const SearchBox = ({ message }) => {
           autoComplete
           autoHighlight
           options={municipios}
+          onInputChange={getDataFromAPI}
           renderInput={(params) => (
             <TextField {...params} onChange={getDataFromAPI} label='Nombre municipio' />
           )}
@@ -63,8 +61,7 @@ export const SearchBox = ({ message }) => {
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out'
-          onClick={updateMun}>
+      ease-in-out'>
           Actualizar mis datos
         </button>
       </div>

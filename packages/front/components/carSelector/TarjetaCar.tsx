@@ -58,6 +58,7 @@ export const TarjetaCar = ({ state, setState }) => {
 };
 TarjetaCar.propTypes = {
   state: {
+    _id: PropTypes.string,
     marca: PropTypes.string,
     modelo: PropTypes.string,
     generacion: PropTypes.string,
@@ -71,6 +72,7 @@ TarjetaCar.propTypes = {
 };
 TarjetaCar.defaultProps = {
   state: {
+    _id: '',
     marca: '',
     modelo: '',
     generacion: '',
