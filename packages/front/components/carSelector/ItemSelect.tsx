@@ -7,7 +7,7 @@ export const ItemSelect = ({ lista, funcion, seleccion }) => {
   }, []);
   return (
     <div className='flex justify-center'>
-      <div className='mb-3 xl:w-96'>
+      <div className='mb-3 sm:w-32 md:w-64 xl:w-96'>
         <select
           className='form-select appearance-none
       block
@@ -25,7 +25,7 @@ export const ItemSelect = ({ lista, funcion, seleccion }) => {
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
           aria-label='Default select example'
-          name='marca'
+          name='selector'
           value={seleccion ? seleccion : 'elige'}
           onChange={funcion}>
           <option selected>{seleccion}</option>

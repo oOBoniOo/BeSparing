@@ -1,28 +1,35 @@
 import { UserProfile } from '@auth0/nextjs-auth0';
-import { addUserDB, updateUserOnDB, checkUserDB } from '../api/usersRequests';
+import { addUserDB, updateUserOnDB, checkUserDB, checkUserById } from '../api/usersRequests';
 
 // ACTION CREATORS
 export const updateData = (userData) => {
-  console.log('mi data', userData);
   return {
     type: 'UPDATE',
     ...userData,
   };
 };
+export const updateCarbData = (carbData) => {
+  console.log('ACTION UPDATECARBDATA', carbData);
+  return {
+    type: 'UPDATE_CARBDATA',
+    carbData,
+  };
+};
+
 export const deleteCarbData = () => {
   return {
-    type: 'DELETECARBDATA',
+    type: 'DELETE_CARBDATA',
   };
 };
 
 export const deleteeData = () => {
   return {
-    type: 'DELETEEDATA',
+    type: 'DELETE_EDATA',
   };
 };
 export const deleteUserData = () => {
   return {
-    type: 'DELETEALLDATA',
+    type: 'DELETE_ALLDATA',
   };
 };
 
@@ -36,4 +43,9 @@ export const getUserData = (email) => async (dispatch) => {
   const data = await checkUserDB(email);
   dispatch(deleteUserData());
   dispatch(updateData(data));
+};
+
+export const updateUserData = (userData) => async (dispatch) => {
+  dispatch(deleteUserData());
+  dispatch(updateData(userData));
 };

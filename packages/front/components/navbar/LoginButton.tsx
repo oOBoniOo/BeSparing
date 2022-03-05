@@ -15,7 +15,7 @@ export const LoginButton = () => {
           <span className='text-rose-100'>{user.email}</span>
 
           <button className='outline-none mobile-menu-button'>
-            <Link href='/userinfo'>
+            <Link href='/userPanel'>
               <svg
                 className='w-8 h-8 text-gray-500 hover:text-rose-400'
                 x-show='!showMenu'

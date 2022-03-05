@@ -12,6 +12,7 @@ export const Alert = ({ message, color, icono }) => {
 
   const { carbData } = useSelector((state) => state);
   console.log('VARIABLE COBNSUMO', carbData);
+  console.log('PROP COLOR', color);
   const { capacidad } = carbData;
   return (
     <>
@@ -34,7 +35,7 @@ export const Alert = ({ message, color, icono }) => {
           </svg>
           {message}
           {'   '}
-          <Link href='/userinfo'>
+          <Link href='/userPanel'>
             <p className={`font-bold text-${color}-800 cursor-pointer`}>Area personal</p>
           </Link>
           .

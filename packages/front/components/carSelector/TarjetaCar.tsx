@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UpdateCar } from '../forms/UpdateCar';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCarbData, updateUserData, updateUserDataOnDB } from '../../lib/redux/userAtcions';
+import { updateUserOnDB } from '../../lib/api/usersRequests';
 
-export const TarjetaCar = ({ state }) => {
+export const TarjetaCar = ({ state, setState }) => {
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state);
+
   const [needUpdate, setNeedUpdate] = useState(false);
   const updateCarData = () => {
-    console.log('APRETEISION THE BUTTONESION');
     setNeedUpdate(true);
   };
-  const updateUserData = () => {};
+
+  const updateUser = async () => {
+    const carbData = { consumo: state.carData.consumo, capacidad: state.carData.capacidad };
+    const res = await updateUserOnDB({ ...userState, carbData });
+    if (res.status == 200) {
+      dispatch(updateCarbData(carbData));
+    }
+  };
+
   return (
     <div className='flex justify-center'>
       <div className='block max-w-sm p-6 bg-white rounded-lg shadow-lg'>
@@ -25,7 +38,7 @@ export const TarjetaCar = ({ state }) => {
         <button
           type='button'
           className=' inline-block m-4 px-6 py-2.5 bg-rose-300 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
-          onClick={updateUserData}>
+          onClick={updateUser}>
           Guardar datos
         </button>
         <button
@@ -34,7 +47,9 @@ export const TarjetaCar = ({ state }) => {
           onClick={() => {
             updateCarData();
           }}>
-          {needUpdate && <UpdateCar />}
+          {needUpdate && (
+            <UpdateCar state={state} setState={setState} handleModal={setNeedUpdate} />
+          )}
           Datos incorrectos
         </button>
       </div>

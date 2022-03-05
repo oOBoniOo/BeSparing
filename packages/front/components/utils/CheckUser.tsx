@@ -9,7 +9,7 @@ export const CheckUser = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   const dispatch = useDispatch();
-  const { _id, carbData } = useSelector((state) => state);
+  const { _id } = useSelector((state) => state);
   const checkUs = async (email) => {
     dispatch(getUserData(email));
   };

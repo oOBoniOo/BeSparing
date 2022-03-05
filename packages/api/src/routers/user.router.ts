@@ -4,8 +4,8 @@ import { User, iUser } from '../models/userData.model';
 
 type MyRequest = FastifyRequest<{
   Body: iUser;
-  Params: { id: string };
-  Querystring: { email: string; userId: string };
+  Params: { _id: string };
+  Querystring: { email: string; userId: string; _id: string };
 }>;
 
 const addUser = async (request: MyRequest, reply: FastifyReply) => {
@@ -27,15 +27,15 @@ const addUser = async (request: MyRequest, reply: FastifyReply) => {
 };
 
 const findUser = async (request: MyRequest, reply: FastifyReply) => {
-  const { email, userId } = request.query;
+  const { email, _id } = request.query;
   try {
-    if (!email && !userId) throw new Error('no data');
+    if (!email && !_id) throw new Error('no data');
     if (email) {
       const res = await User.findOne({ email }).lean();
       return reply.code(200).send({ message: 'OK', res });
     }
-    if (userId) {
-      const res = await User.findOne({ userId }).lean();
+    if (_id) {
+      const res = await User.findOne({ _id }).lean();
       return reply.code(200).send({ message: 'OK', res });
     }
   } catch (error) {
@@ -44,10 +44,18 @@ const findUser = async (request: MyRequest, reply: FastifyReply) => {
 };
 
 const updateUser = async (request: MyRequest, reply: FastifyReply) => {
-  const { id } = request.params;
+  const uData: iUser = request.body;
+  // HACER COPIA DE oBJETO DIFERENTE REFERENCIA
+  // JSON.parse(JSON.stringify(uData))
+
+  const { _id } = uData;
+  delete uData._id;
   try {
-    if (!id) throw new Error('no data');
-    const res = await User.findByIdAndUpdate({ id }, request.body).lean();
+    if (!_id) throw new Error('no data');
+    // const pepe = await User.findById(_id);
+    // console.log('ESTE ES PEEPE', pepe);
+    const res = await User.findByIdAndUpdate(_id, uData);
+    // console.log('RES', res);
     return reply.code(200).send({ message: 'OK', res });
   } catch (error) {
     return reply.code(500).send({ error });
@@ -57,5 +65,5 @@ const updateUser = async (request: MyRequest, reply: FastifyReply) => {
 export const usersRouter: FastifyPluginAsync = async (app) => {
   app.post('/add', addUser);
   app.get('/find', findUser);
-  app.patch('/update/id', updateUser);
+  app.post('/update', updateUser);
 };

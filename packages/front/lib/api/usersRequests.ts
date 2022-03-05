@@ -16,7 +16,13 @@ export const checkUserDB = async (email) => {
   return res.data.res;
 };
 
-export const updateUserOnDB = async (_id) => {
-  const res = await apiClient.patch(`/update/${_id}`);
+export const checkUserById = async (id) => {
+  const res = await apiClient.get(`/user/find?_id=${id}`);
+  return res.data.res;
+};
+
+export const updateUserOnDB = async (data) => {
+  console.log('DATOS EN API-FRONT', data);
+  const res = await apiClient.post(`/user/update`, data);
   return res;
 };

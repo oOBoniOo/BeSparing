@@ -21,26 +21,35 @@ const initialState = {
 function userReducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE':
-      console.log('LA ACCION', action);
       return {
         ...state,
         ...action,
       };
 
-    case 'DELETEEDATA':
+    case 'DELETE_EDATA':
       return {
         ...state,
         eData: {},
       };
-    case 'DELETECARBDATA':
+    case 'UPDATE_CARBDATA':
+      return {
+        ...state,
+        carbData: action.carbData,
+      };
+    case 'DELETE_CARBDATA':
       return {
         ...state,
         carbData: {},
       };
-    case 'DELETEALLDATA':
+    case 'DELETE_ALLDATA':
       return {
         ...state,
         state: {},
+      };
+    case 'UPDATEMUN':
+      return {
+        ...state,
+        municipio: action.municipio,
       };
     default:
       return state;

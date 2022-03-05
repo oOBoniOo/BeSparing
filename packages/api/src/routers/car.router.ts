@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
-import { Car } from '../models/car.model';
+import { Car, iCar } from '../models/car.model';
 import { unique } from '../utils/functions';
 
 type Myrequest = FastifyRequest<{
   Querystring: { marca?: string; modelo?: string; generacion?: string; version?: string };
+  Body: iCar;
 }>;
 
 const getMarcas = async (request: Myrequest, reply: FastifyReply) => {
@@ -74,8 +75,12 @@ const getCarByVersion = async (request: Myrequest, reply: FastifyReply) => {
 const getCarData = async (request: Myrequest, reply: FastifyReply) => {
   const { marca, modelo, generacion, version } = request.query;
   if (marca && modelo && generacion && version) {
-    console.log(marca, modelo, generacion);
-    const data = await Car.find({ marca, modelo, generacion, version }).lean();
+    const data = await Car.find({
+      marca: marca,
+      modelo: modelo,
+      generacion: generacion,
+      version: version,
+    }).lean();
     // const listaVersiones = versiones.map((m) => m.version);
     // const data = unique(listaVersiones);
     reply.send({
@@ -90,10 +95,45 @@ const getCarData = async (request: Myrequest, reply: FastifyReply) => {
   }
 };
 
+const createCar = async (request: Myrequest, reply: FastifyReply) => {
+  const cData: iCar = request.body;
+  console.log(cData);
+
+  // HACER COPIA DE oBJETO DIFERENTE REFERENCIA
+  // JSON.parse(JSON.stringify(cData))
+  try {
+    const res = await Car.create(cData);
+    return reply.code(200).send({ message: 'OK', res });
+  } catch (error) {
+    return reply.code(500).send({ error });
+  }
+};
+
+const updateCar = async (request: Myrequest, reply: FastifyReply) => {
+  const cData: iCar = request.body;
+  // HACER COPIA DE oBJETO DIFERENTE REFERENCIA
+  // JSON.parse(JSON.stringify(cData))
+  console.log('datoscohce', cData);
+  const { _id } = cData;
+  delete cData._id;
+  try {
+    if (!_id) throw new Error('no data');
+    // const pepe = await User.findById(_id);
+    // console.log('ESTE ES PEEPE', pepe);
+    const res = await Car.findByIdAndUpdate(_id, cData);
+    console.log('RES', res);
+    return reply.code(200).send({ message: 'OK', res });
+  } catch (error) {
+    return reply.code(500).send({ error });
+  }
+};
+
 export const carRouter: FastifyPluginAsync = async (app) => {
   app.get('/marcas', getMarcas);
   app.get('/modelos', getCarByModelo);
   app.get('/generaciones', getCarByGeneracion);
   app.get('/versiones', getCarByVersion);
   app.get('/data', getCarData);
+  app.post('/create', createCar);
+  app.post('/update', updateCar);
 };

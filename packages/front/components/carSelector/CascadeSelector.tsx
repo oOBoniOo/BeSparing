@@ -9,6 +9,7 @@ import { TarjetaCar } from './TarjetaCar';
 
 export const CascadeSelect = ({}) => {
   const [state, setState] = useState({
+    _id: '',
     marca: 'Marca',
     modelo: 'Modelo',
     generacion: 'Generacion',
@@ -50,7 +51,6 @@ export const CascadeSelect = ({}) => {
   };
   const gensIni = async () => {
     const gens = await getGen(state.marca, state.modelo);
-    console.log(state.marca, state.modelo, 'GENERACIONES: ', gens);
     setState({
       ...state,
       gensData: gens,
@@ -73,24 +73,22 @@ export const CascadeSelect = ({}) => {
   };
 
   useEffect(() => {
-    updateUser();
+    getCarData();
   }, [state.version]);
 
   const changeVersion = (e) => {
     setState({ ...state, version: e.target.value });
   };
 
-  const updateUser = async () => {
-    console.log(state.marca, state.modelo, state.generacion, state.version);
+  const getCarData = async () => {
     const data = await getCar(state.marca, state.modelo, state.generacion, state.version);
-    console.log('EN UPDATEUSER', data);
+    console.log('INFO DE MI CAR', data);
     setState({
       ...state,
       carData: data,
+      _id: data._id,
     });
   };
-
-  const modifyCar = () => {};
 
   return (
     <div>
@@ -108,9 +106,11 @@ export const CascadeSelect = ({}) => {
       {state.generacion && (
         <ItemSelect lista={state.versionsData} funcion={changeVersion} seleccion={state.version} />
       )}
-      {state.version != 'Version' && state.carData && <TarjetaCar state={state} />}
+      {state.version != 'Version' && state.carData && (
+        <TarjetaCar state={state} setState={setState} />
+      )}
 
-      {state.version && !state.carData && <UpdateCar />}
+      {state.version && !state.carData && <UpdateCar state={state} setState={setState} />}
     </div>
   );
 };

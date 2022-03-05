@@ -66,10 +66,10 @@ export const writeCars = async () => {
           }
 
           const info = {
-            marca: marca,
-            modelo: modelo,
-            generacion: generacion,
-            version: version,
+            marca: marca.trim(),
+            modelo: modelo.trim(),
+            generacion: generacion.trim(),
+            version: version.trim(),
             consumo: consumo,
             capacidad: capacidad,
             estado: 'activo',
