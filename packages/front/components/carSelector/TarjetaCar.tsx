@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UpdateCar } from '../forms/UpdateCar';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCarbData, updateUserData, updateUserDataOnDB } from '../../lib/redux/userAtcions';
+import { updateCarbData } from '../../lib/redux/userAtcions';
 import { updateUserOnDB } from '../../lib/api/usersRequests';
 
 export const TarjetaCar = ({ state, setState }) => {
@@ -69,6 +69,7 @@ TarjetaCar.propTypes = {
     versionsData: PropTypes.array,
     carData: PropTypes.object,
   },
+  setState: PropTypes.func,
 };
 TarjetaCar.defaultProps = {
   state: {

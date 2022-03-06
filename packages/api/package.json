@@ -9,7 +9,8 @@
     "aut": "nodemon src/feed/writeAut.ts",
     "prov": "nodemon src/feed/writeProv.ts",
     "mun": "nodemon src/feed/writeMun.ts",
-    "cars": "nodemon src/feed/writeCars.ts"
+    "cars": "nodemon src/feed/writeCars.ts",
+    "cps": "nodemon src/feed/writeCPs.ts"
   },
   "dependencies": {
     "@types/pino": "^7.0.5",

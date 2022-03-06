@@ -61,7 +61,7 @@ const Landing = () => (
     <div className='flex flex-col items-center mt-12 text-center'>
       <span className='relative inline-flex w-full md:w-auto'>
         <ContentButton></ContentButton>
-        <CheckUser />
+        {/* <CheckUser /> */}
       </span>
       <a href='#' className='mt-3 text-sm text-indigo-500'></a>
     </div>
