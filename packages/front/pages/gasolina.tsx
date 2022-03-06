@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import MapCard from '../components/map/Card';
-import SimpleMap from '../components/map/Mapa';
+import Mapa from '../components/map/Mapa';
 import { CheckUser } from '../components/utils/CheckUser';
 import { getMunById } from '../lib/api/locRequests';
 import { getNearStations } from '../lib/api/stationsRequests';
@@ -38,11 +38,7 @@ const Gasolina = () => {
         <div className='container'>FILTROS</div>
         <div className='grid grid-cols-2 gap-2'>
           <div className='col-span-1 p-10 bg-white rounded'>
-            <SimpleMap
-              setCoordenadas={setCoordenadas}
-              coordenadas={coordenadas}
-              gasolineras={gasolineras}
-            />
+            <Mapa coordenadas={coordenadas} gasolineras={gasolineras} />
           </div>
           <div className='grid grid-cols-2 grid-rows-3 gap-2 py-10'>
             {gasolineras.map((gas, index) => {
