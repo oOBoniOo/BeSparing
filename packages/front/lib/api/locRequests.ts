@@ -18,11 +18,13 @@ export const getMunsPerProv = async (provid: string) => {
   return stations.data.stations;
 };
 
-export const getMuns = async () => {
-  const muns = await apiClient.get(`/mun`);
-  //const lista = muns.data.municipios.map((e) => e.nombre);
-  console.log('RESPUESTA DE LA API', muns);
-  return muns.data.municipios;
+export const getMunByName = async (nombre) => {
+  const mun = await apiClient.get(`/mun?nombre=${nombre}`);
+  return mun.data.municipios;
+};
+export const getMunById = async (_id) => {
+  const mun = await apiClient.get(`/mun/${_id}`);
+  return mun.data.municipio;
 };
 
 export const getMunsMatch = async (nombre: string) => {

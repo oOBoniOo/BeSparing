@@ -3,6 +3,7 @@ import { Municipio } from '../models/municipio.model';
 
 type Myrequest = FastifyRequest<{
   Querystring: { nombre?: string; prov?: string; aut?: string };
+  Params: { _id: string };
 }>;
 
 const getmunicipios = async (request: Myrequest, reply: FastifyReply) => {
@@ -53,8 +54,24 @@ const getMatchMun = async (request: Myrequest, reply: FastifyReply) => {
     });
   }
 };
+
+const getmunicipioById = async (request: Myrequest, reply: FastifyReply) => {
+  const { _id } = request.params;
+  if (_id) {
+    const municipio = await Municipio.findById(_id).lean();
+    reply.send({
+      status: 'listado de municipios: OK',
+      municipio,
+    });
+  } else {
+    reply.code(500).send({
+      status: 'falta _ID',
+    });
+  }
+};
 export const munRouter: FastifyPluginAsync = async (app) => {
   app.get('/', getmunicipios);
+  app.get('/:_id', getmunicipioById);
   app.get('/match', getMatchMun);
   app.get('/porautonomia', getAutMunicipios);
   app.get('/porprovincia', getProvMunicipios);

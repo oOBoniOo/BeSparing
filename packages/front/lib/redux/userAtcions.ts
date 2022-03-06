@@ -1,5 +1,5 @@
 import { UserProfile } from '@auth0/nextjs-auth0';
-import { addUserDB, updateUserOnDB, checkUserDB, checkUserById } from '../api/usersRequests';
+import { addUserDB, checkUserDB } from '../api/usersRequests';
 
 // ACTION CREATORS
 export const updateData = (userData) => {
@@ -30,6 +30,13 @@ export const deleteeData = () => {
 export const deleteUserData = () => {
   return {
     type: 'DELETE_ALLDATA',
+  };
+};
+
+export const updateMunData = (municipio) => {
+  return {
+    type: 'UPDATE_MUN',
+    municipio,
   };
 };
 

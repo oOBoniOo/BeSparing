@@ -2,15 +2,37 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import PropTypes from 'prop-types';
-import { getMunsMatch } from '../../lib/api/locRequests';
+import { getMunByName, getMunsMatch } from '../../lib/api/locRequests';
 import _ from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateMunData } from '../../lib/redux/userAtcions';
+import { updateUserOnDB } from '../../lib/api/usersRequests';
+
 export const SearchBox = ({ message }) => {
   const [municipios, setMunicipios] = useState([]);
+  const [seleccion, setSeleccion] = useState('');
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state);
 
   const getDataFromAPI = async (e, value) => {
-    console.log(value);
+    console.log('VARIABLE VALUE:', value);
     const muns = await getMunsMatch(_.capitalize(e.target.value));
     setMunicipios(muns);
+    if (value) {
+      setSeleccion(value);
+    }
+  };
+
+  const updateMun = async () => {
+    const muni = await getMunByName(seleccion);
+    console.log('HOLA', muni._id);
+    if ((muni.stauts = 200)) {
+      const { _id } = muni;
+      const res = await updateUserOnDB({ ...userState, municipio: _id });
+      if (res.status == 200) {
+        dispatch(updateMunData(_id));
+      }
+    }
   };
 
   return (
@@ -43,7 +65,7 @@ export const SearchBox = ({ message }) => {
           )}
         />
         <button
-          type='submit'
+          onClick={updateMun}
           className='
       w-full
       px-6

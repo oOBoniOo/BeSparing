@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getGen, getMarcas, getModelos, getVersions, getCar } from '../../lib/api/carsRequests';
-import { UpdateCar } from '../forms/UpdateCar';
 import { ItemSelect } from './ItemSelect';
 import { TarjetaCar } from './TarjetaCar';
 
@@ -110,7 +109,7 @@ export const CascadeSelect = ({}) => {
         <TarjetaCar state={state} setState={setState} />
       )}
 
-      {state.version && !state.carData && <UpdateCar state={state} setState={setState} />}
+      {/* {state.version && !state.carData && <UpdateCar state={state} setState={setState} />} */}
     </div>
   );
 };

@@ -19,7 +19,6 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
       const carbData = { consumo: consValue, capacidad: capValue };
       const res = await updateUserOnDB({ ...userState, carbData });
       if (res.status == 200) {
-        console.log('111111111111', state.version);
         dispatch(updateCarbData(carbData));
 
         const nuevoObjeto = {
@@ -32,9 +31,7 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
           capacidad: capValue,
           estado: 'validacion',
         };
-        console.log('ENCIMA');
         const res = await updateCarOnDB(nuevoObjeto);
-        console.log('ABAJ');
         if (res.status == 200) {
           setState({ ...state, carData: { consumo: consValue, capacidad: capValue } });
           handleModal(false);

@@ -22,7 +22,7 @@ const getNearStations = async (request: Myrequest, reply: FastifyReply) => {
     },
   };
 
-  const stations = await Gasolinera.find(query).limit(10).lean();
+  const stations = await Gasolinera.find(query).limit(50).lean();
   reply.send({
     status: 'listado de gasolineras: OK',
     long,
