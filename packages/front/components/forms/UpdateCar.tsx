@@ -4,19 +4,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateCarOnDB } from '../../lib/api/carsRequests';
 import { updateUserOnDB } from '../../lib/api/usersRequests';
 import { updateCarbData } from '../../lib/redux/userAtcions';
+import { iCarbData, iUserData } from '../../lib/redux/userStore';
 
 export const UpdateCar = ({ state, setState, handleModal }) => {
   const consumo = useRef();
   const capacidad = useRef();
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state);
+  const userState = useSelector((state: iUserData) => state);
 
   const updateUser = async () => {
     const consValue = consumo.current.value;
     const capValue = capacidad.current.value;
+    const carString = `${state.marca} - ${state.modelo}`;
 
     if (consValue > 0 && capValue > 0) {
-      const carbData = { consumo: consValue, capacidad: capValue };
+      console.log('MARCA DEL COCHECITO', carString);
+      const carbData: iCarbData = { consumo: consValue, capacidad: capValue, modelo: carString };
       const res = await updateUserOnDB({ ...userState, carbData });
       if (res.status == 200) {
         dispatch(updateCarbData(carbData));
@@ -33,7 +36,10 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
         };
         const res = await updateCarOnDB(nuevoObjeto);
         if (res.status == 200) {
-          setState({ ...state, carData: { consumo: consValue, capacidad: capValue } });
+          setState({
+            ...state,
+            carData: { consumo: consValue, capacidad: capValue },
+          });
           handleModal(false);
         }
       }

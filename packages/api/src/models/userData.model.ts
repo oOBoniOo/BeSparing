@@ -8,6 +8,7 @@ export interface iUser extends Document {
   carbData?: {
     capacidad: number;
     consumo: number;
+    modelo: '';
   };
   eData?: {
     coste: number[];
@@ -23,6 +24,7 @@ const schema = new Schema(
     carbData: {
       capacidad: { type: Number, default: 0 },
       consumo: { type: Number, default: 0 },
+      modelo: { type: String, default: '' },
     },
     eData: {
       coste: [],

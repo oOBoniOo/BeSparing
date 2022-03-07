@@ -3,15 +3,38 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-const initialState = {
+export interface iUserData {
+  _id: string;
+  email: string;
+  userId: string;
+  cp: number;
+  municipio: string;
+  carbData: {
+    capacidad: number;
+    consumo: number;
+    modelo: '';
+  };
+  eData?: {
+    coste: number[];
+  };
+}
+
+export interface iCarbData {
+  capacidad: number;
+  consumo: number;
+  modelo: string;
+}
+
+const initialState: iUserData = {
   _id: '',
   email: '',
   userId: '',
-  cp: '',
+  cp: 0,
   municipio: '',
   carbData: {
     capacidad: 0,
     consumo: 0,
+    modelo: '',
   },
   eData: {
     coste: [],

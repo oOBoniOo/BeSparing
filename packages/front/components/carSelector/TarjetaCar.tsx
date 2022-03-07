@@ -4,10 +4,11 @@ import { UpdateCar } from '../forms/UpdateCar';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCarbData } from '../../lib/redux/userAtcions';
 import { updateUserOnDB } from '../../lib/api/usersRequests';
+import { iCarbData, iUserData } from '../../lib/redux/userStore';
 
 export const TarjetaCar = ({ state, setState }) => {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state);
+  const userState = useSelector((state: iUserData) => state);
 
   const [needUpdate, setNeedUpdate] = useState(false);
   const updateCarData = () => {
@@ -15,7 +16,13 @@ export const TarjetaCar = ({ state, setState }) => {
   };
 
   const updateUser = async () => {
-    const carbData = { consumo: state.carData.consumo, capacidad: state.carData.capacidad };
+    const modString = `${state.carData.marca} - ${state.carData.modelo}`;
+    console.log('INFO DEL CAR:', modString);
+    const carbData: iCarbData = {
+      consumo: state.carData.consumo,
+      capacidad: state.carData.capacidad,
+      modelo: modString,
+    };
     const res = await updateUserOnDB({ ...userState, carbData });
     if (res.status == 200) {
       dispatch(updateCarbData(carbData));

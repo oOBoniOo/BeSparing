@@ -5,6 +5,7 @@ import Mapa from '../components/map/Mapa';
 import { CheckUser } from '../components/utils/CheckUser';
 import { getMunById } from '../lib/api/locRequests';
 import { getNearStations } from '../lib/api/stationsRequests';
+import { iUserData } from '../lib/redux/userStore';
 
 const Gasolina = () => {
   // const { user, error, isLoading } = useUser();
@@ -12,7 +13,7 @@ const Gasolina = () => {
   // if (error) return <div>{error.message}</div>;
   const [gasolineras, setGasolineras] = useState([]);
   const [coordenadas, setCoordenadas] = useState({ lat: 0, lng: 0 });
-  const userState = useSelector((state) => state);
+  const userState = useSelector((state: iUserData) => state);
   useEffect(() => {
     getCoords(userState.municipio);
   }, [userState]);
@@ -35,7 +36,21 @@ const Gasolina = () => {
     return (
       <>
         <CheckUser />
-        <div className='container'>FILTROS</div>
+        <div className='grid grid-cols-3 '>
+          <div className='col-span-1'></div>
+          <div className='col-span-2 text-lg'>
+            <div className='flex flex-coltext-lg justify-items-center'>
+              <div className='container text-lg'>
+                <p className='text-lg'>
+                  PUNTOS DE REPOSTAJE MAS ECONÓMICOS PARA TU{' '}
+                  <b className='text-lg'>{userState.carbData.modelo}</b>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className='col-span-3'> </div>
+        </div>
+
         <div className='grid grid-cols-2 gap-2'>
           <div className='col-span-1 p-10 bg-white rounded'>
             <Mapa coordenadas={coordenadas} gasolineras={gasolineras} />

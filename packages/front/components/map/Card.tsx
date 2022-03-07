@@ -39,6 +39,6 @@ MapCard.propTypes = {
   gasoleo: PropTypes.string,
   gasolina95: PropTypes.string,
   updatedAt: PropTypes.string,
-  consumo: PropTypes.string,
-  capacidad: PropTypes.string,
+  consumo: PropTypes.number,
+  capacidad: PropTypes.number,
 };

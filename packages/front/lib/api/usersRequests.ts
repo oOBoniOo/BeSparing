@@ -5,9 +5,9 @@ export const apiClient = axios.create({ baseURL: 'http://127.0.0.1:1234/api' });
 
 export const addUserDB = async (user: UserProfile) => {
   console.log(user);
-  const { sub } = user;
-  console.log('USER ID ES : ', sub);
-  const res = await apiClient.post('/add', { userid: sub });
+  const { email } = user;
+  console.log('USER ID ES : ', email);
+  const res = await apiClient.post('/add', { email: email });
   return res;
 };
 

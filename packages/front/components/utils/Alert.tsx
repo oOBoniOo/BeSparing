@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import { useUser } from '@auth0/nextjs-auth0';
+// import { useUser } from '@auth0/nextjs-auth0';
 import PropTypes from 'prop-types';
 
 export const Alert = ({ message, color, icono }) => {
-  const { user, error, isLoading } = useUser();
+  // const { user, error, isLoading } = useUser();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>{error.message}</div>;
 
   const { carbData } = useSelector((state) => state);
   console.log('VARIABLE COBNSUMO', carbData);

@@ -1,5 +1,6 @@
 import { UserProfile } from '@auth0/nextjs-auth0';
 import { addUserDB, checkUserDB } from '../api/usersRequests';
+import { iCarbData } from './userStore';
 
 // ACTION CREATORS
 export const updateData = (userData) => {
@@ -8,7 +9,7 @@ export const updateData = (userData) => {
     ...userData,
   };
 };
-export const updateCarbData = (carbData) => {
+export const updateCarbData = (carbData: iCarbData) => {
   console.log('ACTION UPDATECARBDATA', carbData);
   return {
     type: 'UPDATE_CARBDATA',
