@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { conectDB } from '../lib/dbConnect';
-import { Autonomia } from '../models/Autonomia.model';
-import { Provincia } from '../models/Provincia.model';
+import { Autonomia } from '../models/autonomia.model';
+import { Provincia } from '../models/provincia.model';
 
 
 export const writeProv= async () => {

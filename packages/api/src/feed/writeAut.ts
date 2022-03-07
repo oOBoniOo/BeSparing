@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { conectDB } from '../lib/dbConnect';
-import { Autonomia } from '../models/Autonomia.model';
+import { Autonomia } from '../models/autonomia.model';
 
 
 export const writeAut= async () => {
