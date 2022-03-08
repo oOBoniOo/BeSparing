@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-
 import piggy from '../public/piggy.png';
 import { useUser } from '@auth0/nextjs-auth0';
 import { Alert } from './utils/Alert';
 import { CheckUser } from './utils/CheckUser';
+import Link from 'next/link';
 
 const ContentButton = () => {
   const { user, error, isLoading } = useUser();
@@ -14,15 +14,14 @@ const ContentButton = () => {
     <>
       {user ? (
         <>
-          <a
-            href='/gasolina'
+          <div
             type='button'
             className='inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white border border-transparent rounded-full bg-rose-300 md:w-auto hover:bg-rose-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
-            Ahorra en carburantes
-          </a>
-          <span className='absolute top-0 right-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
-            en 2 simples pasos
-          </span>
+            <Link href='/gasolina'>Ahorra en carburantes</Link>
+            <span className='absolute top-0 right-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
+              en 2 simples pasos
+            </span>
+          </div>
         </>
       ) : (
         <>

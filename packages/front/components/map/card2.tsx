@@ -13,7 +13,7 @@ const MapCard = ({
   capacidad,
   cp,
 }) => (
-  <div className='flex flex-col items-start justify-between px-4 py-2 mb-2 shadow-lg bg-zinc-100'>
+  <div className='flex flex-col items-start justify-between px-1 py-1 mb-2 shadow-lg bg-zinc-100'>
     <div className='flex justify-between w-full'>
       <div className='flex flex-col items-start justify-start w-full px-2'>
         <div className='flex items-center justify-between w-full'>
@@ -63,49 +63,6 @@ const MapCard = ({
       </div>
     </div>
   </div>
-  //   <div className='block w-full h-auto m-auto text-center bg-white rounded-lg shadow-lg'>
-  //     <div className='px-1 py-1 text-sm border-b border-gray-300'>
-  //       <p>
-  //         <b>{direccion}</b>
-  //       </p>
-  //       <p>
-  //         <b>
-  //           {localidad} ({cp})
-  //         </b>
-  //       </p>
-  //     </div>
-  //     <div className='p-1'>
-  //       {tipo == 'gasolina' && (
-  //         <>
-  //           <p className='mb-1 text-sm text-gray-700'>
-  //             Gasolina 95{' '}
-  //             <strong>
-  //               {precioCombustible}€/l dep:{(capacidad * precioCombustible).toFixed(2)}€
-  //             </strong>
-  //           </p>
-  //           <p className='mb-1 text-sm text-gray-700'>
-  //             <strong>{((consumo / 100) * precioCombustible).toFixed(3)}€ el km</strong>
-  //           </p>
-  //         </>
-  //       )}
-  //       {tipo == 'diesel' && (
-  //         <>
-  //           <p className='mb-1 text-sm text-gray-700'>
-  //             Diesel{' '}
-  //             <strong>
-  //               {precioCombustible}€/l dep:{(capacidad * precioCombustible).toFixed(2)}€
-  //             </strong>
-  //           </p>
-  //           <p className='mb-1 text-sm text-gray-700'>
-  //             <strong>{((consumo / 100) * precioCombustible).toFixed(3)}€ el km</strong>
-  //           </p>
-  //         </>
-  //       )}
-  //     </div>
-  //     <div className='px-1 py-1 mb-1 text-sm text-gray-600 border-t border-gray-300'>
-  //       <b>ACT:</b> {updatedAt}
-  //     </div>
-  //   </div>
 );
 
 export default MapCard;

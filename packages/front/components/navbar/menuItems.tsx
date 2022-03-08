@@ -22,7 +22,7 @@ const MenuItems = [
   },
   {
     label: 'Ahorra en electricidad',
-    url: '/resume',
+    url: '/electricidad',
     // icon: <ResumeIcon />,
     active: true,
   },
