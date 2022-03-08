@@ -1,14 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MapCard = ({ direccion, localidad, gasoleo, gasolina95, updatedAt, consumo, capacidad }) => (
+const MapCard = ({
+  direccion,
+  localidad,
+  gasoleo,
+  gasolina95,
+  updatedAt,
+  consumo,
+  capacidad,
+  cp,
+}) => (
   <div className='block w-full h-auto m-auto text-center bg-white rounded-lg shadow-lg'>
     <div className='px-1 py-1 text-sm border-b border-gray-300'>
       <p>
         <b>{direccion}</b>
       </p>
       <p>
-        <b>{localidad}</b>
+        <b>
+          {localidad} ({cp})
+        </b>
       </p>
     </div>
     <div className='p-1'>

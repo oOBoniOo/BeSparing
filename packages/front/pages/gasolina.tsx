@@ -8,9 +8,6 @@ import { getNearStations } from '../lib/api/stationsRequests';
 import { iUserData } from '../lib/redux/userStore';
 
 const Gasolina = () => {
-  // const { user, error, isLoading } = useUser();
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>{error.message}</div>;
   const [gasolineras, setGasolineras] = useState([]);
   const [coordenadas, setCoordenadas] = useState({ lat: 0, lng: 0 });
   const userState = useSelector((state: iUserData) => state);
@@ -19,20 +16,22 @@ const Gasolina = () => {
   }, [userState]);
 
   const getCoords = async (municipio) => {
-    const res = await getMunById(municipio);
+    if (municipio) {
+      const res = await getMunById(municipio);
 
-    const coordinates = res.coords.coordinates;
-    setCoordenadas({ lat: coordinates[1], lng: coordinates[0] });
-    console.log('RESUTL', coordenadas);
+      const coordinates = res.coords.coordinates;
+      setCoordenadas({ lat: coordinates[1], lng: coordinates[0] });
+      console.log('RESUTL', coordenadas);
 
-    // setCoordenadas([...coordenadas, coordinates]);
-    // console.log('coordenadas', coordenadas);
-    const gasStations = await getNearStations(coordinates[1], coordinates[0]);
-    const bestStations = gasStations.slice(0, 9);
-    setGasolineras(bestStations);
+      // setCoordenadas([...coordenadas, coordinates]);
+      // console.log('coordenadas', coordenadas);
+      const gasStations = await getNearStations(coordinates[1], coordinates[0]);
+      const bestStations = gasStations.slice(0, 9);
+      setGasolineras(bestStations);
+    }
   };
 
-  if (userState) {
+  if (userState._id != '' && userState.municipio != '') {
     return (
       <>
         <CheckUser />
@@ -67,6 +66,7 @@ const Gasolina = () => {
                   updatedAt={gas.updatedAt}
                   consumo={userState.carbData.consumo}
                   capacidad={userState.carbData.capacidad}
+                  cp={gas.cp}
                 />
               );
             })}
@@ -75,7 +75,11 @@ const Gasolina = () => {
       </>
     );
   } else {
-    return <h1>Logeate please</h1>;
+    if (userState.municipio == '' && userState._id != '') {
+      return <h1>Accede al area personal para intoducir tus datos</h1>;
+    } else {
+      return <h1>Logeate please</h1>;
+    }
   }
 };
 

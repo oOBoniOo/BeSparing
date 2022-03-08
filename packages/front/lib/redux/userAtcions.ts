@@ -71,7 +71,13 @@ export const getUserData = (email) => async (dispatch) => {
         coste: [],
       },
     };
-    const res = addUserDB(info);
+    const res = await addUserDB(info);
+    console.log('RESULTADO DE LA INSERCION', res);
+    if (res.status == 200) {
+      console.log('ESTADO 200 DESPUES DE INSERRTAR');
+      dispatch(deleteUserData());
+      dispatch(updateData(res.data));
+    }
   } else {
     dispatch(deleteUserData());
     dispatch(updateData(data));

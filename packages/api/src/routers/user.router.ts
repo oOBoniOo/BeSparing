@@ -17,6 +17,7 @@ const addUser = async (request: MyRequest, reply: FastifyReply) => {
     // if (!userId) throw new Error('userid not found');
     const res = await User.create({ email: email });
     console.log('DESPUES DEL CREATE', res);
+    return reply.code(200).send(res);
   } catch (error) {
     console.log(error);
     return reply.code(500).send({ error });
