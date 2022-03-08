@@ -17,13 +17,18 @@ const SimpleMap = ({ coordenadas, gasolineras }) => {
         defaultCenter={coordenadas}
         center={coordenadas}
         defaultZoom={10}>
+          <Marker
+          key={1111111111111111}
+              lat={40.3915}
+              lng={-3.676639}
+              text='hola'/>
         {gasolineras.map((gas) => {
           console.log('GASOLINERA', gas.location.coordinates);
           return (
             <Marker
               key={gas._id}
-              lat={gas.location.coordinates[1]}
-              lng={gas.location.coordinates[0]}
+              lat={gas.location.coordinates[0]}
+              lng={gas.location.coordinates[1]}
               text='hola'
             />
           );

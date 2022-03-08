@@ -1,9 +1,9 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface iUser extends Document {
+export interface UserDocument extends Document {
   email: string;
   userId: string;
-  cp?: number;
+  cp: number;
   municipio?: string;
   carbData?: {
     capacidad: number;
@@ -18,7 +18,7 @@ export interface iUser extends Document {
 const schema = new Schema(
   {
     email: { type: String, unique: true, required: true },
-    userId: { type: String, unique: true },
+    userId: { type: String },
     cp: { type: Number, default: 0 },
     municipio: { type: String, default: '' },
     carbData: {
@@ -36,4 +36,4 @@ const schema = new Schema(
   },
 );
 
-export const User = mongoose.model<iUser>('User', schema);
+export const User = mongoose.model<UserDocument>('User', schema);

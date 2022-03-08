@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserData } from '../../lib/redux/userAtcions';
+import { getUserData, updateEmailData } from '../../lib/redux/userAtcions';
 import { iUserData } from '../../lib/redux/userStore';
 
 export const CheckUser = () => {
@@ -17,6 +17,7 @@ export const CheckUser = () => {
   };
   useEffect(() => {
     if (user && !_id) {
+      dispatch(updateEmailData(user.email));
       checkUs(user.email);
     }
   }, []);

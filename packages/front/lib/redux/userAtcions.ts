@@ -41,6 +41,13 @@ export const updateMunData = (municipio) => {
   };
 };
 
+export const updateEmailData = (email) => {
+  return {
+    type: 'UPDATE_EMAIL',
+    email,
+  };
+};
+
 export const saveUserOnServer = (user: UserProfile) => {
   return async (dispatch) => {
     return await addUserDB(user);
@@ -49,8 +56,26 @@ export const saveUserOnServer = (user: UserProfile) => {
 
 export const getUserData = (email) => async (dispatch) => {
   const data = await checkUserDB(email);
-  dispatch(deleteUserData());
-  dispatch(updateData(data));
+  if (data == null) {
+    const info = {
+      email: email,
+      userId: '',
+      cp: 0,
+      municipio: '',
+      carbData: {
+        capacidad: 0,
+        consumo: 0,
+        modelo: '',
+      },
+      eData: {
+        coste: [],
+      },
+    };
+    const res = addUserDB(info);
+  } else {
+    dispatch(deleteUserData());
+    dispatch(updateData(data));
+  }
 };
 
 export const updateUserData = (userData) => async (dispatch) => {

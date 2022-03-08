@@ -1,27 +1,24 @@
 /* eslint-disable max-len */
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
-import { User, iUser } from '../models/userData.model';
+import { User, UserDocument } from '../models/userData.model';
 
 type MyRequest = FastifyRequest<{
-  Body: iUser;
+  Body: UserDocument;
   Params: { _id: string };
   Querystring: { email: string; userId: string; _id: string };
 }>;
 
 const addUser = async (request: MyRequest, reply: FastifyReply) => {
-  const { email, userId } = request.body;
-  console.log('***********************AQUI ENTRO', email);
+  const { email } = request.body;
+
   try {
-    if (!email) throw new Error('email not found');
-    if (!userId) throw new Error('userid not found');
-    await User.create({ email, userId })
-      .then((data) => {
-        return reply.code(200).send(data);
-      })
-      .catch((error) => {
-        return reply.code(500).send({ message: error });
-      });
+    console.log('***********************AQUI ENTRO', email);
+    // if (!email) throw new Error('email not found');
+    // if (!userId) throw new Error('userid not found');
+    const res = await User.create({ email: email });
+    console.log('DESPUES DEL CREATE', res);
   } catch (error) {
+    console.log(error);
     return reply.code(500).send({ error });
   }
 };
@@ -44,7 +41,7 @@ const findUser = async (request: MyRequest, reply: FastifyReply) => {
 };
 
 const updateUser = async (request: MyRequest, reply: FastifyReply) => {
-  const uData: iUser = request.body;
+  const uData: UserDocument = request.body;
   // HACER COPIA DE oBJETO DIFERENTE REFERENCIA
   // JSON.parse(JSON.stringify(uData))
 
