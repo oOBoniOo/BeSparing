@@ -11,17 +11,13 @@ const SimpleMap = ({ coordenadas, gasolineras }) => {
   console.log(gasolineras);
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '100%', width: '100%' }}>
+    <div style={{ height: '100vh', width: '100vh' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: mKey }}
         defaultCenter={coordenadas}
         center={coordenadas}
         defaultZoom={10}>
-          <Marker
-          key={1111111111111111}
-              lat={40.3915}
-              lng={-3.676639}
-              text='hola'/>
+        <Marker key={1111111111111111} lat={40.3915} lng={-3.676639} text='hola' />
         {gasolineras.map((gas) => {
           console.log('GASOLINERA', gas.location.coordinates);
           return (
