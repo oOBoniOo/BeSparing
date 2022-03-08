@@ -22,13 +22,21 @@ const compare95 = (a, b) => {
   return 0;
 };
 
-export const getNearStations = async (lat, lng) => {
+export const getNearStations = async (lat, lng, tipo) => {
   const stations = await apiClient.get(`/stations?long=${lng}&lat=${lat}`);
   console.log('desde el api front', stations.data.stations);
-  let nearStationsList = stations.data.stations.sort(compareGas);
-  nearStationsList = stations.data.stations.sort(compare95);
+  let nearStationsList = stations.data.nearStationsList;
+  if (tipo == 'gasolina') {
+    nearStationsList = stations.data.stations.sort(compare95);
+  } else {
+    nearStationsList = stations.data.stations.sort(compareGas);
+  }
   nearStationsList = nearStationsList.filter((stat) => {
-    return stat.gasoleo != 0 || stat.gasolina_95 != 0;
+    if (tipo == 'gasolina') {
+      return stat.gasolina_95 != 0;
+    } else {
+      return stat.gasoleo != 0;
+    }
   });
   return nearStationsList;
 };

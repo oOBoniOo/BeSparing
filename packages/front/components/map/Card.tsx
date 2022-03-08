@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const MapCard = ({
   direccion,
   localidad,
-  gasoleo,
-  gasolina95,
+  precioCombustible,
+  tipo,
   updatedAt,
   consumo,
   capacidad,
@@ -23,18 +23,32 @@ const MapCard = ({
       </p>
     </div>
     <div className='p-1'>
-      <p className='mb-1 text-sm text-gray-700'>
-        Gasolina 95{' '}
-        <strong>
-          {gasolina95}€/l dep:{(capacidad * gasolina95).toFixed(2)}€
-        </strong>
-      </p>
-      <p className='mb-1 text-sm text-gray-700'>
-        Diesel{' '}
-        <strong>
-          {gasoleo}€/l dep:{(capacidad * gasoleo).toFixed(2)}€
-        </strong>
-      </p>
+      {tipo == 'gasolina' && (
+        <>
+          <p className='mb-1 text-sm text-gray-700'>
+            Gasolina 95{' '}
+            <strong>
+              {precioCombustible}€/l dep:{(capacidad * precioCombustible).toFixed(2)}€
+            </strong>
+          </p>
+          <p className='mb-1 text-sm text-gray-700'>
+            <strong>{((consumo / 100) * precioCombustible).toFixed(3)}€ el km</strong>
+          </p>
+        </>
+      )}
+      {tipo == 'diesel' && (
+        <>
+          <p className='mb-1 text-sm text-gray-700'>
+            Diesel{' '}
+            <strong>
+              {precioCombustible}€/l dep:{(capacidad * precioCombustible).toFixed(2)}€
+            </strong>
+          </p>
+          <p className='mb-1 text-sm text-gray-700'>
+            <strong>{((consumo / 100) * precioCombustible).toFixed(3)}€ el km</strong>
+          </p>
+        </>
+      )}
     </div>
     <div className='px-1 py-1 mb-1 text-sm text-gray-600 border-t border-gray-300'>
       <b>ACT:</b> {updatedAt}
@@ -47,9 +61,10 @@ export default MapCard;
 MapCard.propTypes = {
   direccion: PropTypes.string,
   localidad: PropTypes.string,
-  gasoleo: PropTypes.string,
-  gasolina95: PropTypes.string,
+  precioCombustible: PropTypes.string,
+  tipo: PropTypes.string,
   updatedAt: PropTypes.string,
   consumo: PropTypes.number,
   capacidad: PropTypes.number,
+  cp: PropTypes.number,
 };

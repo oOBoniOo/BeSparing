@@ -31,6 +31,7 @@ export const writeCars = async () => {
           let consumoUrb = 0;
           let consumoExt = 0;
           let consumo = 0;
+          let tipo = '';
           const myRe2 = /(\d{1,2})+.?\d/g;
           const performanceKeys = Object.keys(dataV['_performance']);
           performanceKeys.forEach((key) => {
@@ -53,6 +54,30 @@ export const writeCars = async () => {
               case 'consumo_de_combustible_extraurbano_nedc_':
                 consumoExt = parseFloat(dataV['_performance'][key].match(myRe2)[0]);
                 break;
+              case 'combustible':
+                if (dataV['_performance'][key].toLowerCase().includes('gasolina')) {
+                  tipo = 'gasolina';
+                } else {
+                  if (dataV['_performance'][key].toLowerCase().includes('diesel')) {
+                    tipo = 'diesel';
+                  } else {
+                    if (dataV['_performance'][key].toLowerCase().includes('mezcla')) {
+                      tipo = 'gasolina';
+                    } else {
+                      if (dataV['_performance'][key].toLowerCase().includes('gpl')) {
+                        tipo = 'gasolina';
+                      } else {
+                        if (dataV['_performance'][key].toLowerCase().includes('hidr')) {
+                          tipo = 'gasolina';
+                        } else {
+                          tipo = dataV['_performance'][key].toLowerCase();
+                        }
+                      }
+                    }
+                  }
+                }
+                // console.log(tipo);
+                break;
             }
           });
           if (consumo == 0) {
@@ -72,11 +97,12 @@ export const writeCars = async () => {
             version: version.trim(),
             consumo: consumo,
             capacidad: capacidad,
+            tipo: tipo.trim(),
             estado: 'activo',
           };
           coches.push(info);
           // await Car.create(info).then();
-          console.log(coches);
+          // console.log(coches);
         });
       });
     });
@@ -92,6 +118,7 @@ export const writeCars = async () => {
   // const coordes = {type: 'Point', coordinates: [parseFloat(prov['Longitud (WGS84)'].replace(/,/g, '.')), parseFloat(prov['Latitud'].replace(/,/g, '.'))]};
   await Promise.all(
     coches.map(async (coche: any) => {
+      console.log(coche.tipo);
       await Car.create(coche).then();
     }),
   );

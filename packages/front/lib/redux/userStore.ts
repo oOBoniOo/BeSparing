@@ -12,6 +12,7 @@ export interface iUserData {
   carbData: {
     capacidad: number;
     consumo: number;
+    tipo: string;
     modelo: '';
   };
   eData?: {
@@ -22,6 +23,7 @@ export interface iUserData {
 export interface iCarbData {
   capacidad: number;
   consumo: number;
+  tipo: string;
   modelo: string;
 }
 
@@ -34,6 +36,7 @@ const initialState: iUserData = {
   carbData: {
     capacidad: 0,
     consumo: 0,
+    tipo: 'gasolina',
     modelo: '',
   },
   eData: {
@@ -75,7 +78,7 @@ function userReducer(state = initialState, action) {
         ...state,
         municipio: action.municipio,
       };
-      case 'UPDATE_EMAIL':
+    case 'UPDATE_EMAIL':
       console.log('EN LA STORE', action.email);
       return {
         ...state,

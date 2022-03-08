@@ -25,7 +25,11 @@ const Gasolina = () => {
 
       // setCoordenadas([...coordenadas, coordinates]);
       // console.log('coordenadas', coordenadas);
-      const gasStations = await getNearStations(coordinates[1], coordinates[0]);
+      const gasStations = await getNearStations(
+        coordinates[1],
+        coordinates[0],
+        userState.carbData.tipo,
+      );
       const bestStations = gasStations.slice(0, 9);
       setGasolineras(bestStations);
     }
@@ -42,7 +46,8 @@ const Gasolina = () => {
               <div className='container text-lg'>
                 <p className='text-lg'>
                   PUNTOS DE REPOSTAJE MAS ECONÓMICOS PARA TU{' '}
-                  <b className='text-lg'>{userState.carbData.modelo}</b>
+                  <b className='text-lg'>{userState.carbData.modelo} </b>
+                  de <b>{userState.carbData.tipo}</b>
                 </p>
               </div>
             </div>
@@ -61,8 +66,10 @@ const Gasolina = () => {
                   key={index}
                   direccion={gas.direccion}
                   localidad={gas.localidad}
-                  gasoleo={gas.gasoleo}
-                  gasolina95={gas.gasolina_95}
+                  precioCombustible={
+                    userState.carbData.tipo == 'diesel' ? gas.gasoleo : gas.gasolina_95
+                  }
+                  tipo={userState.carbData.tipo}
                   updatedAt={gas.updatedAt}
                   consumo={userState.carbData.consumo}
                   capacidad={userState.carbData.capacidad}

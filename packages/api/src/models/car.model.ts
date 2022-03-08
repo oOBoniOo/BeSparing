@@ -7,6 +7,7 @@ export interface iCar extends Document {
   version: string;
   consumo: number;
   capacidad: number;
+  tipo: string;
   estado: string;
 }
 
@@ -18,6 +19,7 @@ const schema = new Schema(
     version: { type: String },
     consumo: { type: Number },
     capacidad: { type: Number },
+    tipo: { type: String, enum: ['gasolina', 'diesel', 'electricidad'], default: 'gasolina' },
     estado: { type: String, required: ['activo', 'validacion'], default: 'activo' },
   },
   {

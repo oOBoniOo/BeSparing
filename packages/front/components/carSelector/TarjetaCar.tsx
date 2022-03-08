@@ -21,6 +21,7 @@ export const TarjetaCar = ({ state, setState }) => {
     const carbData: iCarbData = {
       consumo: state.carData.consumo,
       capacidad: state.carData.capacidad,
+      tipo: state.carData.tipo,
       modelo: modString,
     };
     const res = await updateUserOnDB({ ...userState, carbData });
@@ -37,10 +38,17 @@ export const TarjetaCar = ({ state, setState }) => {
         </h5>
         <h4 className='mb-2 font-medium leading-tight text-gray-900 text-m'>{state.generacion}</h4>
         <h3 className='mb-2 leading-tight text-gray-900 text-m'>{state.version}</h3>
-        <p className='mb-4 text-base text-gray-700'> Consumo: {state.carData.consumo} l/100</p>
         <p className='mb-4 text-base text-gray-700'>
           {' '}
-          Capacidad deposito: {state.carData.capacidad} l
+          Consumo: <b>{state.carData.consumo} litros / 100 km</b>
+        </p>
+        <p className='mb-4 text-base text-gray-700'>
+          {' '}
+          Capacidad deposito: <b>{state.carData.capacidad} litros</b>
+        </p>
+        <p className='mb-4 text-base text-gray-700'>
+          {' '}
+          Tipo de Combustible: <b>{state.carData.tipo}</b>
         </p>
         <button
           type='button'

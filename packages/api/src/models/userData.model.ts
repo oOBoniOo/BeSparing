@@ -9,6 +9,7 @@ export interface UserDocument extends Document {
     capacidad: number;
     consumo: number;
     modelo: '';
+    tipo: '';
   };
   eData?: {
     coste: number[];
@@ -25,6 +26,7 @@ const schema = new Schema(
       capacidad: { type: Number, default: 0 },
       consumo: { type: Number, default: 0 },
       modelo: { type: String, default: '' },
+      tipo: { type: String, enum: ['diesel', 'gasolina', 'electricidad'], defaut: 'gasolina' },
     },
     eData: {
       coste: [],
