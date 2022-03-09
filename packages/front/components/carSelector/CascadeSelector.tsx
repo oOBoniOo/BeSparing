@@ -81,12 +81,13 @@ export const CascadeSelect = ({}) => {
 
   const getCarData = async () => {
     const data = await getCar(state.marca, state.modelo, state.generacion, state.version);
-    console.log('INFO DE MI CAR', data);
-    setState({
-      ...state,
-      carData: data,
-      _id: data._id,
-    });
+    if (data) {
+      setState({
+        ...state,
+        carData: data,
+        _id: data._id,
+      });
+    }
   };
 
   return (

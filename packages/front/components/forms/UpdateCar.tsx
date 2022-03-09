@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCarOnDB } from '../../lib/api/carsRequests';
 import { updateUserOnDB } from '../../lib/api/usersRequests';
@@ -11,6 +11,10 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
   const capacidad = useRef();
   const dispatch = useDispatch();
   const userState = useSelector((state: iUserData) => state);
+  const [tipoValue, setTipo] = useState('gasolina');
+  const getTipo = (selection) => {
+    setTipo(selection.target.value);
+  };
 
   const updateUser = async () => {
     const consValue = consumo.current.value;
@@ -19,7 +23,12 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
 
     if (consValue > 0 && capValue > 0) {
       console.log('MARCA DEL COCHECITO', carString);
-      const carbData: iCarbData = { consumo: consValue, capacidad: capValue, modelo: carString };
+      const carbData: iCarbData = {
+        consumo: consValue,
+        capacidad: capValue,
+        modelo: carString,
+        tipo: tipoValue,
+      };
       const res = await updateUserOnDB({ ...userState, carbData });
       if (res.status == 200) {
         dispatch(updateCarbData(carbData));
@@ -32,6 +41,7 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
           version: state.version,
           consumo: consValue,
           capacidad: capValue,
+          tipo: tipoValue,
           estado: 'validacion',
         };
         const res = await updateCarOnDB(nuevoObjeto);
@@ -47,108 +57,77 @@ export const UpdateCar = ({ state, setState, handleModal }) => {
   };
 
   return (
-    <div className='flex justify-center'>
-      <div className='block max-w-md p-6 bg-white rounded-lg shadow-lg'>
-        <h3>Datos incorrectos o inexistentes, Introduce nuevos datos</h3>
-        <div>
-          <div className='grid grid-cols-2 gap-4'>
-            <div className='mb-6 form-group'>
-              <input
-                type='text'
-                className='form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-          text-gray-700
-          bg-white bg-clip-padding
-          border border-solid border-gray-300
-          rounded
-          transition
-          ease-in-out
-          m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-                id='exampleInput123'
-                aria-describedby='emailHelp123'
-                placeholder='Consumo'
-                ref={consumo}
-              />
-            </div>
-            <div className='mb-6 form-group'>
-              <input
-                type='text'
-                className='form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-          text-gray-700
-          bg-white bg-clip-padding
-          border border-solid border-gray-300
-          rounded
-          transition
-          ease-in-out
-          m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-                id='exampleInput124'
-                aria-describedby='emailHelp124'
-                placeholder='Capacidad (en Litros)'
-                ref={capacidad}
-              />
-            </div>
+    <>
+      <div className="flex items-center mb-4 bg-white border border-solid border-gray-300">
+        <div
+          className="flex flex-col items-start mb-4 text-gray-500 font-semibold "
+          onChange={getTipo}
+        >
+          <div>
+            <input className="m-1" type="radio" value="gasolina" name="gender" /> gasolina
           </div>
-          <button
-            onClick={updateUser}
-            className='
-      w-full
-      px-6
-      py-2.5
-      bg-rose-300
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-gray-900 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out'>
-            Actualizar mis datos
-          </button>
+          <div>
+            <input className="m-1" type="radio" value="diesel" name="gender" /> diesel
+          </div>
+          <div>
+            <input className="m-1" type="radio" value="electricidad" name="gender" /> electricidad
+          </div>
         </div>
       </div>
-    </div>
+      <div className="flex items-center mb-4">
+        <input
+          type="text"
+          className="form-control
+                block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          id="exampleInput123"
+          aria-describedby="emailHelp123"
+          placeholder="Consumo"
+          ref={consumo}
+        />
+      </div>
+      <div className="flex items-center mb-4">
+        <input
+          type="text"
+          className="form-control
+                block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          id="exampleInput124"
+          aria-describedby="emailHelp124"
+          placeholder="Capacidad (en Litros)"
+          ref={capacidad}
+        />
+      </div>
+      <button
+        onClick={updateUser}
+        className="inline-block m-4 px-6 py-2.5 bg-rose-300 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+      >
+        Actualizar mis datos
+      </button>
+    </>
   );
 };
-// const updateUser = async () => {
-//   const carbData = { consumo: state.carData.consumo, capacidad: state.carData.capacidad };
-//   const res = await updateUserOnDB({ ...userState, carbData });
-//   if (res.status == 200) {
-//     console.log('111111111111');
-//     dispatch(updateCarbData(carbData));
-
-//     const nuevoObjeto = {
-//       marca: state.marca,
-//       modelo: state.modelo,
-//       generacion: state.generacion,
-//       version: state.version,
-//       consumo: state.carData.consumo,
-//       capacidad: state.carData.capacidad,
-//       estado: 'validacion',
-//     };
-//     console.log('ENCIMA');
-//     const res = await createCarOnDB({ nuevoObjeto });
-//     console.log('ABAJ');
-//     if (res.status == 200) {
-//       setState({ ...state, cardData: nuevoObjeto });
-//     }
-//   }
-// };

@@ -11,7 +11,7 @@ type response = {
   ResultadoConsulta: String;
 };
 export const getGasolineras = async () => {
-  const { close } = await conectDB();
+  // const { close } = await conectDB();
   try {
     await Gasolinera.collection.drop();
   } catch (error) {
@@ -56,6 +56,6 @@ export const getGasolineras = async () => {
     }),
   );
 
-  await close();
+  // await close();
 };
 getGasolineras();
