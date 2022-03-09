@@ -10,7 +10,6 @@ export const updateData = (userData) => {
   };
 };
 export const updateCarbData = (carbData: iCarbData) => {
-  console.log('ACTION UPDATECARBDATA', carbData);
   return {
     type: 'UPDATE_CARBDATA',
     carbData,
@@ -72,9 +71,7 @@ export const getUserData = (email) => async (dispatch) => {
       },
     };
     const res = await addUserDB(info);
-    console.log('RESULTADO DE LA INSERCION', res);
     if (res.status == 200) {
-      console.log('ESTADO 200 DESPUES DE INSERRTAR');
       dispatch(deleteUserData());
       dispatch(updateData(res.data));
     }

@@ -17,7 +17,6 @@ export const TarjetaCar = ({ state, setState }) => {
 
   const updateUser = async () => {
     const modString = `${state.carData.marca} - ${state.carData.modelo}`;
-    console.log('INFO DEL CAR:', modString);
     const carbData: iCarbData = {
       consumo: state.carData.consumo,
       capacidad: state.carData.capacidad,
@@ -31,43 +30,41 @@ export const TarjetaCar = ({ state, setState }) => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="block max-w-sm p-6 bg-white rounded-lg shadow-lg">
-        <h5 className="mb-2 text-xl font-medium leading-tight text-gray-900">
+    <div className='flex justify-center'>
+      <div className='block max-w-sm p-6 bg-white rounded-lg shadow-lg'>
+        <h5 className='mb-2 text-xl font-medium leading-tight text-gray-900'>
           {`${state.marca} ${state.modelo}`}
         </h5>
-        <h4 className="mb-2 font-medium leading-tight text-gray-900 text-m">{state.generacion}</h4>
-        <h3 className="mb-2 leading-tight text-gray-900 text-m">{state.version}</h3>
-        <p className="mb-4 text-base text-gray-700">
+        <h4 className='mb-2 font-medium leading-tight text-gray-900 text-m'>{state.generacion}</h4>
+        <h3 className='mb-2 leading-tight text-gray-900 text-m'>{state.version}</h3>
+        <p className='mb-4 text-base text-gray-700'>
           {' '}
           Consumo: <b>{state.carData.consumo} litros / 100 km</b>
         </p>
-        <p className="mb-4 text-base text-gray-700">
+        <p className='mb-4 text-base text-gray-700'>
           {' '}
           Capacidad deposito: <b>{state.carData.capacidad} litros</b>
         </p>
-        <p className="mb-4 text-base text-gray-700">
+        <p className='mb-4 text-base text-gray-700'>
           {' '}
           Tipo de Combustible: <b>{state.carData.tipo}</b>
         </p>
         <button
-          type="button"
-          className=" inline-block m-4 px-6 py-2.5 bg-rose-300 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-          onClick={updateUser}
-        >
+          type='button'
+          className=' inline-block m-4 px-6 py-2.5 bg-rose-300 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
+          onClick={updateUser}>
           Guardar datos
         </button>
         <button
-          type="button"
-          className="inline-block m-4 px-6 py-2.5 bg-rose-300 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+          type='button'
+          className='inline-block m-4 px-6 py-2.5 bg-rose-300 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
           onClick={() => {
             updateCarData();
-          }}
-        >
+          }}>
           Datos incorrectos
         </button>
         {needUpdate && (
-          <div className="block max-w-sm p-6 bg-white rounded-lg shadow-lg bg-zinc-100">
+          <div className='block max-w-sm p-6 bg-white rounded-lg shadow-lg bg-zinc-100'>
             <UpdateCar state={state} setState={setState} handleModal={setNeedUpdate} />
           </div>
         )}

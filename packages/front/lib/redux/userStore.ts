@@ -73,13 +73,11 @@ function userReducer(state = initialState, action) {
         state: {},
       };
     case 'UPDATE_MUN':
-      console.log('EN LA STORE', action.municipio);
       return {
         ...state,
         municipio: action.municipio,
       };
     case 'UPDATE_EMAIL':
-      console.log('EN LA STORE', action.email);
       return {
         ...state,
         email: action.email,

@@ -25,13 +25,11 @@ export const getVersions = async (marca: string, modelo: string, generacion: str
 };
 
 export const createCarOnDB = async (data) => {
-  console.log('DATOS EN CAR en FRONT', data);
   const res = await apiClient.post(`/car/update`, data);
   return res;
 };
 
 export const updateCarOnDB = async (data) => {
-  console.log('DATOS EN CAR en FRONT', data);
   const res = await apiClient.post(`/car/update`, data);
   return res;
 };
@@ -45,7 +43,6 @@ export const getCar = async (
   const res = await apiClient.get(
     `/car/data?marca=${marca}&modelo=${modelo}&generacion=${generacion}&version=${version}`,
   );
-  console.log('CAAAAAAAAAAAAR EN PETICION DE FRONT', version, 'hola');
   return res.data.data ? res.data.data[0] : {};
 };
 // export const getByProvCod = async (id: number) => {

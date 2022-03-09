@@ -15,7 +15,6 @@ export const SearchBox = ({ message }) => {
   const userState = useSelector((state) => state);
 
   const getDataFromAPI = async (e, value) => {
-    console.log('VARIABLE VALUE:', value);
     const muns = await getMunsMatch(_.capitalize(e.target.value));
     setMunicipios(muns);
     if (value) {
@@ -25,7 +24,6 @@ export const SearchBox = ({ message }) => {
 
   const updateMun = async () => {
     const muni = await getMunByName(seleccion);
-    console.log('HOLA', muni._id);
     if ((muni.stauts = 200)) {
       const { _id } = muni;
       const res = await updateUserOnDB({ ...userState, municipio: _id });

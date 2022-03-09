@@ -11,8 +11,6 @@ export const Alert = ({ message, color, icono }) => {
   // if (error) return <div>{error.message}</div>;
 
   const { carbData } = useSelector((state) => state);
-  console.log('VARIABLE COBNSUMO', carbData);
-  console.log('PROP COLOR', color);
   const { capacidad } = carbData;
   return (
     <>

@@ -8,7 +8,6 @@ import { IoCarSportSharp } from 'react-icons/io5';
 import { MdOutlineAddLocationAlt } from 'react-icons/md';
 const UserPanel = () => {
   const { user, error, isLoading } = useUser();
-  console.log(user);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   if (user) {

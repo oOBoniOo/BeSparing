@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 export const ItemSelect = ({ lista, funcion, seleccion }) => {
-  useEffect(() => {
-    console.log(lista);
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className='flex justify-center'>
       <div className='mb-3 sm:w-32 md:w-64 xl:w-96'>

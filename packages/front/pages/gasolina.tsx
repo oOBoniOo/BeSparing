@@ -21,10 +21,7 @@ const Gasolina = () => {
 
       const coordinates = res.coords.coordinates;
       setCoordenadas({ lat: coordinates[1], lng: coordinates[0] });
-      console.log('RESUTL', coordenadas);
 
-      // setCoordenadas([...coordenadas, coordinates]);
-      // console.log('coordenadas', coordenadas);
       const gasStations = await getNearStations(
         coordinates[1],
         coordinates[0],

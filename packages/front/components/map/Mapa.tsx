@@ -28,7 +28,6 @@ const SimpleMap = ({ coordenadas, gasolineras }) => {
           setIsCard(!isCard);
         }}>
         {gasolineras.map((gas, i) => {
-          console.log('GASOLINERA', gas.location.coordinates);
           return (
             <Marker key={i} lat={gas.location.coordinates[0]} lng={gas.location.coordinates[1]} />
           );
