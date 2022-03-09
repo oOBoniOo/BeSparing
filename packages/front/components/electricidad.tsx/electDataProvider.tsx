@@ -25,38 +25,55 @@ const EData = () => {
     console.log('ESTADO', data);
     const openValues = data.map((e) => e.value);
     console.log('VALUES', openValues);
-    const grafico = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'horas',
-            data: [],
-            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-            borderColor: 'rgba(255, 159, 64, 1)',
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: false,
+    const max = Math.max(...openValues);
+    const min = Math.min(...openValues);
+    const tramo = (max - min) / 3;
+    const colores = openValues.map((e) => {
+      if (_.inRange(e, min, min + tramo)) {
+        return '#00f46e';
+      } else if (_.inRange(e, min - 1 + tramo, max - tramo)) {
+        return '#ffd800';
+      } else if (_.inRange(e, max - tramo, max + 1)) {
+        return '#ff0000';
+      } else {
+        return '#ffd800';
+      }
+    });
+    console.log(colores);
+    if (ctx) {
+      const grafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: 'horas',
+              data: [],
+              backgroundColor: colores,
+              borderColor: 'rgba(0, 0, 0, 1)',
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: false,
+            },
           },
         },
-      },
-    });
-    console.log(data);
+      });
+      console.log(data);
 
-    console.log('open', openValues);
-    grafico.data.labels = _.range(openValues.length);
-    grafico.data.datasets[0].data = openValues;
-    grafico.update();
+      console.log('open', openValues);
+      grafico.data.labels = _.range(openValues.length);
+      grafico.data.datasets[0].data = openValues;
+      grafico.update();
+    }
   };
 
   return (
-    <div>
+    <div className='flex flex-col w-3/4'>
       <h2>PRECIO ELECTRICIDAD HOY</h2>
       <div style={{ height: 500 }}>
         <canvas ref={ref} />

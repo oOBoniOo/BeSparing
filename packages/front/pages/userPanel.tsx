@@ -4,7 +4,8 @@ import { CascadeSelect } from '../components/carSelector/CascadeSelector';
 import UserInfo from '../components/userinfo';
 import { Alert } from '../components/utils/Alert';
 import { SearchBox } from '../components/utils/SearchBox';
-
+import { IoCarSportSharp } from 'react-icons/io5';
+import { MdOutlineAddLocationAlt } from 'react-icons/md';
 const UserPanel = () => {
   const { user, error, isLoading } = useUser();
   console.log(user);
@@ -16,11 +17,18 @@ const UserPanel = () => {
         <UserInfo user={user} />
         <div className='grid max-w-lg grid-cols-2 px-4 py-32 mx-auto text-left md:max-w-none md:text-center'>
           <div>
-            <h1>Car Info</h1>
+            <div className='p-2 m-auto'>
+              Encuentra la informacionde tu vehiculo
+              <IoCarSportSharp size={32} className='m-auto' />
+            </div>
+
             <CascadeSelect />
           </div>
           <div>
-            <h1>Location Info</h1>
+            <div className='p-2 m-auto'>
+              Donde te encuentras?
+              <MdOutlineAddLocationAlt size={32} className='m-auto' />
+            </div>
             <SearchBox />
           </div>
         </div>
