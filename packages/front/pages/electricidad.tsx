@@ -1,11 +1,5 @@
 import React from 'react';
+import EData from '../components/electricidad.tsx/electDataProvider';
 
-const Electricidad = () => {
-  return (
-    <di>
-      <h1>Hola</h1>
-    </di>
-  );
-};
-
+const Electricidad = () => <EData />;
 export default Electricidad;
