@@ -8,6 +8,7 @@ export interface iGasolinera extends Document {
   localidad: string;
   municipio: string;
   location: iPoint;
+  nombre: string;
   gasoleo: number;
   gasolina_95: number;
   gasolina_98: number;
@@ -28,6 +29,7 @@ const schema = new Schema(
       type: { type: String, default: 'Point' },
       coordinates: { type: [Number] },
     },
+    nombre: String,
     gasoleo: Number,
     gasolina_95: Number,
     gasolina_98: Number,

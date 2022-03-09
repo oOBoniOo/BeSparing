@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Cabecera } from '../components/map/Cabecera';
-import MapCard from '../components/map/Card';
 import { List } from '../components/map/List';
 import Mapa from '../components/map/Mapa';
-import { CheckUser } from '../components/utils/CheckUser';
 import { getMunById } from '../lib/api/locRequests';
 import { getNearStations } from '../lib/api/stationsRequests';
 import { iUserData } from '../lib/redux/userStore';
@@ -39,7 +37,7 @@ const Gasolina = () => {
 
   if (userState._id != '' && userState.municipio != '') {
     return (
-      <div className='relative flex items-center justify-center w-full h-full'>
+      <div className="relative flex items-center justify-center w-full h-full">
         <Cabecera userState={userState} />
         <List gasolineras={gasolineras} userState={userState} />
         <Mapa coordenadas={coordenadas} gasolineras={gasolineras} />
