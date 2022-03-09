@@ -35,7 +35,6 @@ const getStationsByCP = async (request: Myrequest, reply: FastifyReply) => {
   const { cp } = request.query;
   const min = parseInt(cp) - 5;
   const max = parseInt(cp) + 5;
-  console.log('MAX ', max, 'MIN', min);
   const query = { $and: [{ cp: { $gt: min } }, { cp: { $lt: max } }] };
   const stations = await Gasolinera.find(query).lean();
   reply.send({

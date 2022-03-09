@@ -23,7 +23,6 @@ export const getGasolineras = async () => {
 
   const allGas: [] = consulta.ListaEESSPrecio;
 
-  console.log(allGas);
   await Promise.all(
     allGas.map(async (gas: any) => {
       const coordes = {

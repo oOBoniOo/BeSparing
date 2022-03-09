@@ -12,14 +12,11 @@ const addUser = async (request: MyRequest, reply: FastifyReply) => {
   const { email } = request.body;
 
   try {
-    console.log('***********************AQUI ENTRO', email);
     // if (!email) throw new Error('email not found');
     // if (!userId) throw new Error('userid not found');
     const res = await User.create({ email: email });
-    console.log('DESPUES DEL CREATE', res);
     return reply.code(200).send(res);
   } catch (error) {
-    console.log(error);
     return reply.code(500).send({ error });
   }
 };
@@ -50,10 +47,7 @@ const updateUser = async (request: MyRequest, reply: FastifyReply) => {
   delete uData._id;
   try {
     if (!_id) throw new Error('no data');
-    // const pepe = await User.findById(_id);
-    // console.log('ESTE ES PEEPE', pepe);
     const res = await User.findByIdAndUpdate(_id, uData);
-    // console.log('RES', res);
     return reply.code(200).send({ message: 'OK', res });
   } catch (error) {
     return reply.code(500).send({ error });

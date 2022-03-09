@@ -56,7 +56,6 @@ const getCarByGeneracion = async (request: Myrequest, reply: FastifyReply) => {
 const getCarByVersion = async (request: Myrequest, reply: FastifyReply) => {
   const { marca, modelo, generacion } = request.query;
   if (marca && modelo && generacion) {
-    console.log(marca, modelo, generacion);
     const versiones = await Car.find({ marca, modelo, generacion }).lean();
     const listaVersiones = versiones.map((m) => m.version);
     const data = unique(listaVersiones);
@@ -97,10 +96,7 @@ const getCarData = async (request: Myrequest, reply: FastifyReply) => {
 
 const createCar = async (request: Myrequest, reply: FastifyReply) => {
   const cData: iCar = request.body;
-  console.log(cData);
 
-  // HACER COPIA DE oBJETO DIFERENTE REFERENCIA
-  // JSON.parse(JSON.stringify(cData))
   try {
     const res = await Car.create(cData);
     return reply.code(200).send({ message: 'OK', res });
@@ -113,15 +109,11 @@ const updateCar = async (request: Myrequest, reply: FastifyReply) => {
   const cData: iCar = request.body;
   // HACER COPIA DE oBJETO DIFERENTE REFERENCIA
   // JSON.parse(JSON.stringify(cData))
-  console.log('datoscohce', cData);
   const { _id } = cData;
   delete cData._id;
   try {
     if (!_id) throw new Error('no data');
-    // const pepe = await User.findById(_id);
-    // console.log('ESTE ES PEEPE', pepe);
     const res = await Car.findByIdAndUpdate(_id, cData);
-    console.log('RES', res);
     return reply.code(200).send({ message: 'OK', res });
   } catch (error) {
     return reply.code(500).send({ error });

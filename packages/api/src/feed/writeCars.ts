@@ -76,7 +76,6 @@ export const writeCars = async () => {
                     }
                   }
                 }
-                // console.log(tipo);
                 break;
             }
           });
@@ -101,24 +100,13 @@ export const writeCars = async () => {
             estado: 'activo',
           };
           coches.push(info);
-          // await Car.create(info).then();
-          // console.log(coches);
         });
       });
     });
   });
 
-  // key
-  // .trim()
-  // .toLowerCase()
-  // .normalize('NFD')
-  // .replace(/[\u0300-\u036f]/g, '')
-  // .replace(/[\s&\/\\#,+()$~%.'":*?<>{}]/g, '_')
-  // .replace('__', '_')
-  // const coordes = {type: 'Point', coordinates: [parseFloat(prov['Longitud (WGS84)'].replace(/,/g, '.')), parseFloat(prov['Latitud'].replace(/,/g, '.'))]};
   await Promise.all(
     coches.map(async (coche: any) => {
-      console.log(coche.tipo);
       await Car.create(coche).then();
     }),
   );

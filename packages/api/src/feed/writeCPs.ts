@@ -10,7 +10,6 @@ export const writeCods = async () => {
     console.log('No hay nada en CodigosPostales.');
   }
   const jsonData = require('./data_sources/cps.json');
-  console.log(jsonData);
 
   await Promise.all(
     jsonData.map(async (cp: any) => {
