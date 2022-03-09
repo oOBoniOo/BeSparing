@@ -17,6 +17,7 @@
     "@types/react": "^17.0.39",
     "@types/react-transition-group": "^4.4.4",
     "chart.js": "^3.7.1",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "dotenv": "^16.0.0",
     "google-map-react": "^2.1.10",
     "next": "^12.1.0",

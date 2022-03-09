@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import fetcher from '../../lib/swr-fetcher';
 import _ from 'lodash';
 import { Chart, BarElement, BarController, LinearScale, CategoryScale } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 Chart.register(BarElement, BarController, CategoryScale, LinearScale);
 
 const EData = () => {
@@ -19,12 +20,9 @@ const EData = () => {
   }, [ctx]);
 
   const pintarGrafico = async () => {
-    const putamierda = await getData();
-    console.log('peticion', putamierda);
-    setData(putamierda);
-    console.log('ESTADO', data);
+    const datos = await getData();
+    setData(datos);
     const openValues = data.map((e) => e.value);
-    console.log('VALUES', openValues);
     const max = Math.max(...openValues);
     const min = Math.min(...openValues);
     const tramo = (max - min) / 3;
@@ -39,7 +37,9 @@ const EData = () => {
         return '#ffd800';
       }
     });
-    console.log(colores);
+    Chart.defaults.set('plugins.datalabels', {
+      color: '#FE777B',
+    });
     if (ctx) {
       const grafico = new Chart(ctx, {
         type: 'bar',
@@ -63,9 +63,7 @@ const EData = () => {
           },
         },
       });
-      console.log(data);
 
-      console.log('open', openValues);
       grafico.data.labels = _.range(openValues.length);
       grafico.data.datasets[0].data = openValues;
       grafico.update();
