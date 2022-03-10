@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MapCard from './card2';
+import MapCard from './Card';
 
 export const List = ({ gasolineras, userState }) => {
   return (
-    <div className="absolute top-0 left-0 z-10 flex flex-col w-1/3 h-screen px-2 overflow-hidden bg-zinc-100 ">
-      <div className="flex flex-col flex-1 mt-16 overflow-y-scroll">
+    <div className='absolute top-0 left-0 z-10 flex flex-col w-1/3 h-screen px-2 overflow-hidden bg-zinc-100 '>
+      <div className='flex flex-col flex-1 mt-16 overflow-y-scroll'>
         {gasolineras.map((gas, index) => {
           return (
             <MapCard

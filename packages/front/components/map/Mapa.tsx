@@ -3,12 +3,12 @@ import GoogleMapReact from 'google-map-react';
 import { IoLocation } from 'react-icons/io5';
 import PropTypes from 'prop-types';
 // Cuando tengamos datos, introduciremos marcadores ene l mapa
-const Marker = ({ key, lat, lng }) => (
+const Marker = ({ lat, lng }) => (
   <div className='relative cursor-pointer'>
     <IoLocation color='red' fontSize={30} />
   </div>
 );
-Marker.propTypes = { key: PropTypes.string, lat: PropTypes.number, lng: PropTypes.number };
+Marker.propTypes = { lat: PropTypes.number, lng: PropTypes.number };
 
 const mKey = process.env.MAP_KEY;
 

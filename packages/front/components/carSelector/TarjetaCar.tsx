@@ -7,8 +7,8 @@ import { updateUserOnDB } from '../../lib/api/usersRequests';
 import { iCarbData, iUserData } from '../../lib/redux/userStore';
 
 export const TarjetaCar = ({ state, setState }) => {
-  const dispatch = useDispatch();
   const userState = useSelector((state: iUserData) => state);
+  const dispatch = useDispatch();
 
   const [needUpdate, setNeedUpdate] = useState(false);
   const updateCarData = () => {
