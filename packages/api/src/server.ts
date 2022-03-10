@@ -38,7 +38,7 @@ server.register(mainApp);
 
 const start = async () => {
   try {
-    await server.listen(PORT, '127.0.0.1');
+    await server.listen(PORT, '0.0.0.0');
     // server.cron.startAllJobs();
     server.log.info('listening at port: ', PORT);
   } catch (err) {
