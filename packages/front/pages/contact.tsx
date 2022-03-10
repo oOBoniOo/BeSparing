@@ -39,7 +39,7 @@ const ContactForm = () => {
                   errors.email ? 'text-red-600' : 'text-gray-900'
                 }`}>
                 Email
-                {errors.email ? <>🔴</> : <>✅</>}
+                {errors.email ? <>🔴</> : <></>}
               </label>
 
               <input
@@ -63,7 +63,7 @@ const ContactForm = () => {
                 className={`block font-bold text-sm mb-2 ${
                   errors.nombre ? 'text-red-600' : 'text-gray-900'
                 }`}>
-                Nombre{errors.nombre ? <>🔴</> : <>✅</>}
+                Nombre{errors.nombre ? <>🔴</> : <></>}
               </label>
 
               <input
@@ -84,7 +84,7 @@ const ContactForm = () => {
                 className={`block font-bold text-sm mb-2 ${
                   errors.contenido ? 'text-red-600' : 'text-gray-900'
                 }`}>
-                Mensaje{errors.contenido ? <>🔴</> : <>✅</>}
+                Mensaje{errors.contenido ? <>🔴</> : <></>}
               </label>
               <textarea
                 name='contenido'

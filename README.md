@@ -46,32 +46,22 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them.
 
 ```
-Bla bla bla
+Node 16.x
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
+To start both fron and api, we just need:
 
 ```
-bla bla bla
-```
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-### Break down into end to end tests
+yarn init
+yanr install
+yarn run dev
 
 ```
-bla bla bla
-```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+in each of the folders of the different services
 
 ## 🎈 API <a name="usage"></a>
 
@@ -80,7 +70,7 @@ Dispondremos de los siguientes endpoints:
 CRUD `Comunidades autonomas`:
 
 - `GET /api/aut`: Lista todas las comunidades autonomas
-- `GET /api/aut?queryparams`: Detalle de una única comunidad autonoma
+- `GET /api/aut?queryparams(codigo, nombre)`: Detalle de una única comunidad autonoma
 
 CRUD `provincias`:
 
@@ -90,9 +80,9 @@ CRUD `provincias`:
 
 CRUD `municipios`:
 
-- `GET /api/mun`: Lista todas las provincias
-- `GET /api/mun/porprovincia?prov`: Municipios por autonomia
-- `GET /api/mun/porautonomia?aut`: Municipios por provincia
+- `GET /api/mun`: Lista todas los municipio
+- `GET /api/mun/porprovincia?prov`: Municipios por provincia
+- `GET /api/mun/porautonomia?aut`: Municipios por autonomia
 
 CRUD `cars`:
 
@@ -102,47 +92,81 @@ CRUD `cars`:
 - `GET /api/versiones?marca&modelo&generacion`: Lista todas las versionesde una generacion
 - `GET /api/onecar?marca&modelo&generacion&version`: Lista un vehiculo.
 - `POST /api/update`: Actualiza los datos de un vehiculo
+- `POST /api/create`: Crea un nuevo un vehiculo
 
 CRUD `stations`:
 
 - `GET /api/stations?long&lat`: Gasolineras cercanas a un punto.
+- `GET /api/stations/cp?cp`: Gasolineras cercanas a un codigo postal.
+- `GET /api/stations/autonomia/:id`: Gasolineras en la comunidad autonoma.
+- `GET /api/stations/provincia/:id`: Gasolineras en la provincia.
+- `GET /api/stations/municipio?nombre`: Gasolineras en un municipio.
 
 CRUD `users`:
 
-- `GET /api/user`: Lista todos los users
-- `GET /api/user/:id_`: Detalle de un user
+- `GET /api/user/find?queryparams(email/_id`: Lista todos los users
 - `POST /api/user/add`: Crea un user
-- `POST /api/user/update/:id_`: Actualiza un user
-- `DELETE /api/user/delete/:id_`: Elimina un user
+- `POST /api/user/update`: Actualiza un user
+- `DELETE /api/user/delete/:id_`: Elimina un user [PENDIENTE DE IMPLEMENTAR]
 
 ## 🎈 Usage <a name="usage"></a>
 
-....................................
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="./imgs/Inicio.png" alt="Pag Inicio"></a>
+</p>
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="./imgs/inicioLogin.png" alt="After login"></a>
+</p>
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="./imgs/areapersonal.png" alt="areapers"></a>
+</p>
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="./imgs/electricidad.png" alt="electricidad"></a>
+</p>
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="./imgs/gasolineras.png" alt="gasolina"></a>
+</p>
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="./imgs/form.png" alt="contacto"></a>
+</p>
+<p align="center">
+  <a href="" >
+ <img width=200px height=400px src="./imgs/responsive.png" alt="contacto"></a>
+</p>
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-```
-bla bla bla
-```
+Puede ser desplegado en cualquier servicion web tipo Heroku, gcp, aws...
+Para mas info, seguir las instrucciones de cada uno de ellos.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
 - [Fastify](https://www.fastify.io/) - Server Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
-- [React](https://es.reactjs.org/) -
+- [React](https://es.reactjs.org/) - JavaScript library
 - [NextJs](https://nextjs.org/) - React Framework
+- [Nodemon](https://nodemon.io/) - Dev utility
+- [Typescript](https://www.typescriptlang.org/) - JavaScript with syntax for types
+- [ChartJs](https://www.chartjs.org/) - JavaScript charting
+- [Redux](https://react-redux.js.org/) - Official React bindings for Redux
+- [react-hook-forms](https://react-hook-form.com/) - Performant, flexible and extensible forms
+- [tailwindcss](https://tailwindcss.com/) - CSS framework
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@oobonioo](https://github.com/oOBoniOo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/oobonioo/) who participated in this project.
+- [@oobonioo](https://github.com/oOBoniOo) - idea, design and implementation
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- Thanks to the countless people who teach and share their experience throughout the world and thanks to whom many of the obstacles along the way are solved.
+- Infinite thanks to all those who pushed me to get into this world.
 -
-- [![Status](https://brand.corecode.school/logos/logo_core_wide.svg)](https://www.corecode.school/)
+- y por supuesto gracias a tod al agente de Core por estos 5 meses de aprendizaje.
+  [![Status](https://brand.corecode.school/logos/logo_core_wide.svg)](https://www.corecode.school/)
