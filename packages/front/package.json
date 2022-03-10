@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.7.0",
+    "@hookform/resolvers": "^2.8.8",
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@types/axios": "^0.14.0",
@@ -31,6 +32,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.27.1",
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
     "react-router": "^6.2.2",
@@ -40,7 +42,8 @@
     "redux-thunk": "^2.4.1",
     "swr": "^1.2.2",
     "tw-elements": "^1.0.0-alpha11",
-    "typescript": "^4.6.2"
+    "typescript": "^4.6.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",
