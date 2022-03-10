@@ -6,6 +6,8 @@ type Myrequest = FastifyRequest<{
   Params: { id: string };
 }>;
 
+// Listamos las diferentes autonomias en base a los datos recibidos en las queryparams
+
 const getAutonomias = async (request: Myrequest, reply: FastifyReply) => {
   const { codigo, nombre } = request.query;
   if (!codigo && !nombre) {
@@ -33,5 +35,4 @@ const getAutonomias = async (request: Myrequest, reply: FastifyReply) => {
 
 export const autRouter: FastifyPluginAsync = async (app) => {
   app.get('/', getAutonomias);
-  // app.get(':codigo', getOneAutonomia);
 };

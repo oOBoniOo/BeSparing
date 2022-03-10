@@ -83,5 +83,4 @@ export const stationsRouter: FastifyPluginAsync = async (app) => {
   app.get('/autonomia/:id', getByAut);
   app.get('/provincia/:id', getByProv);
   app.get('/municipio', getByMunName);
-  // app.get('/provincia', getByProvName);
 };
