@@ -6,6 +6,7 @@ import piggy from '../../public/piggy.png';
 import Image from 'next/image';
 import { LoginButton, LoginButtonMobile } from './LoginButton';
 import { MenuLinks } from './MenuLinks';
+import { MenuLinksMobile } from './MenuLinksMobile';
 
 const Navbar = () => {
   useEffect(() => {
@@ -60,34 +61,7 @@ const Navbar = () => {
       {/* <!-- mobile menu --> */}
       <div className='hidden mobile-menu'>
         <ul className=''>
-          <li className='active'>
-            <a
-              href='index.html'
-              className='block px-2 py-4 text-sm font-semibold text-gray-500 bg-rose-300'>
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href='/gasolina'
-              className='block px-2 py-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300'>
-              Ahorra en gasolina
-            </a>
-          </li>
-          <li>
-            <a
-              href='#about'
-              className='block px-2 py-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300'>
-              Ahorra en electicidad
-            </a>
-          </li>
-          <li>
-            <a
-              href='#contact'
-              className='block px-2 py-4 text-sm text-gray-500 transition duration-300 hover:bg-rose-300'>
-              Contacto
-            </a>
-          </li>
+          <MenuLinksMobile />
           <li>
             <LoginButtonMobile />
           </li>
