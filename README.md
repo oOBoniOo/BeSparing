@@ -34,7 +34,8 @@
 
 ## 🧐 About <a name = "about"></a>
 
-This is my web development bootcamp's final prjoct.
+Particularly, in Spain the price of energy has become highly expensive in recent times.
+Given this situation and wanting to carry out a "useful" project at the end of my training, I decided to implement BeSparing, a platform idea to be able to consult some basic data of certain everyday savings-oriented products.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -81,14 +82,11 @@ CRUD `Comunidades autonomas`:
 - `GET /api/aut`: Lista todas las comunidades autonomas
 - `GET /api/aut?queryparams`: Detalle de una única comunidad autonoma
 
-
 CRUD `provincias`:
 
 - `GET /api/prov`: Lista todas las provincias
 - `GET /api/prov?queryparams(codigo/nombre)`: Detalle de una única provincia
 - `GET /api/prov/porautonomia`: Detalle de una provincias por autonomia
-
-
 
 CRUD `municipios`:
 
@@ -105,11 +103,9 @@ CRUD `cars`:
 - `GET /api/onecar?marca&modelo&generacion&version`: Lista un vehiculo.
 - `POST /api/update`: Actualiza los datos de un vehiculo
 
-
 CRUD `stations`:
 
 - `GET /api/stations?long&lat`: Gasolineras cercanas a un punto.
-
 
 CRUD `users`:
 
