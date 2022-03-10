@@ -34,11 +34,11 @@ export const SearchBox = ({ message }) => {
   };
 
   return (
-    <div className='flex justify-center'>
-      <div className='mb-3 sm:w-32 md:w-64 xl:w-96'>
+    <div className="flex justify-center">
+      <div className="mb-3 sm:w-32 md:w-64 xl:w-96">
         <h3>{message}</h3>
         <Autocomplete
-          className='appearance-none
+          className="appearance-none
       block
       w-full
       px-3
@@ -52,19 +52,19 @@ export const SearchBox = ({ message }) => {
       transition
       ease-in-out
       m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           freeSolo
           autoComplete
           autoHighlight
           options={municipios}
           onInputChange={getDataFromAPI}
           renderInput={(params) => (
-            <TextField {...params} onChange={getDataFromAPI} label='Nombre municipio' />
+            <TextField {...params} onChange={() => getDataFromAPI} label="Nombre municipio" />
           )}
         />
         <button
           onClick={updateMun}
-          className='
+          className="
       w-full
       px-6
       py-2.5
@@ -81,7 +81,8 @@ export const SearchBox = ({ message }) => {
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out'>
+      ease-in-out"
+        >
           Actualizar mis datos
         </button>
       </div>
