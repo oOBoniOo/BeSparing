@@ -83,8 +83,9 @@ const Footer = () => (
         </a>
 
         <a
-          href='#!'
+          href='https://www.linkedin.com/in/danielbonillo/'
           type='button'
+          target='_blank'
           className='m-1 leading-normal text-white uppercase transition duration-150 ease-in-out border-2 border-white rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 w-9 h-9'>
           <svg
             aria-hidden='true'
@@ -102,7 +103,8 @@ const Footer = () => (
         </a>
 
         <a
-          href='#!'
+          href='https://github.com/oOBoniOo'
+          target='_blank'
           type='button'
           className='m-1 leading-normal text-white uppercase transition duration-150 ease-in-out border-2 border-white rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 w-9 h-9'>
           <svg
@@ -122,47 +124,7 @@ const Footer = () => (
       </div>
 
       <div className='mb-6'>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum repellat
-          quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam eum harum
-          corrupti dicta, aliquam sequi voluptate quas.
-        </p>
-      </div>
-
-      <div className='grid lg:grid-cols-2 md:grid-cols-2'>
-        <div className='mb-6'>
-          <h5 className='uppercase font-bold mb-2.5'>Links</h5>
-
-          <ul className='mb-0 list-none'>
-            <li>
-              <Link href='#!'>
-                <div className='text-gray-300 '>Link 1</div>
-              </Link>
-            </li>
-            <li>
-              <Link href='#!'>
-                <div className='text-gray-300 '>Link 2</div>
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        <div className='mb-6'>
-          <h5 className='uppercase font-bold mb-2.5'>Links</h5>
-
-          <ul className='mb-0 list-none'>
-            <li>
-              <Link href='#!'>
-                <div className='text-gray-300 '>Link 1</div>
-              </Link>
-            </li>
-            <li>
-              <Link href='#!'>
-                <div className='text-gray-300 '>Link 2</div>
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <p>Hecho con cariño y mucho esfuerzo</p>
       </div>
     </div>
 

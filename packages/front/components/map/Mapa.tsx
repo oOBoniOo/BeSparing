@@ -33,9 +33,9 @@ const SimpleMap = ({ coordenadas, gasolineras }) => {
           );
         })}
         {isCard && (
-          <div className='absolute left-0 rounded-lg shadow-lg w-34 h32 bg-rose-200 -top-3'>
+          <div className='absolute left-0 rounded-lg shadow-lg w-34 h32 bg-rose-100 -top-3'>
             <div className='flex justify-center'>
-              <div className='block max-w-sm p-6 rounded-lg shadow-lg bg-rose-200'>
+              <div className='block max-w-sm p-6 rounded-lg shadow-lg bg-rose-100'>
                 <h5 className='mb-2 text-lg font-medium leading-tight text-gray-900'>
                   {datosTarjeta.direccion}
                 </h5>

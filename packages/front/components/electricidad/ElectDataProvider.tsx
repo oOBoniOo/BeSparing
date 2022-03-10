@@ -70,12 +70,12 @@ const EData = () => {
   };
 
   return (
-    <div className="flex flex-col w-3/4">
-      <h2>PRECIO ELECTRICIDAD HOY</h2>
-      <div style={{ height: 500 }}>
+    <>
+      <h2>PRECIO ELECTRICIDAD HOY (Mw/h) </h2>
+      <div style={{ display: 'block', position: 'relative', height: '40vh', width: '80vw' }}>
         <canvas ref={ref} />
       </div>
-    </div>
+    </>
   );
 };
 

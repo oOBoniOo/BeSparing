@@ -2,7 +2,7 @@ import React from 'react';
 import EData from '../components/electricidad/ElectDataProvider';
 
 const Electricidad = () => (
-  <div className='relative flex items-center justify-center w-full h-full'>
+  <div style={{ position: 'relative', height: '80vh', width: '80vw' }}>
     <EData />
   </div>
 );
