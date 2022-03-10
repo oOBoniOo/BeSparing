@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import { CascadeSelect } from '../components/carSelector/CascadeSelector';
-import UserInfo from '../components/userinfo';
+import UserInfo from '../components/Userinfo';
 import { Alert } from '../components/utils/Alert';
 import { SearchBox } from '../components/utils/SearchBox';
 import { IoCarSportSharp } from 'react-icons/io5';
