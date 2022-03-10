@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import fetcher from '../../lib/swr-fetcher';
 import _ from 'lodash';
 import { Chart, BarElement, BarController, LinearScale, CategoryScale } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 Chart.register(BarElement, BarController, CategoryScale, LinearScale);
 
 const EData = () => {
@@ -71,7 +70,7 @@ const EData = () => {
   };
 
   return (
-    <div className='flex flex-col w-3/4'>
+    <div className="flex flex-col w-3/4">
       <h2>PRECIO ELECTRICIDAD HOY</h2>
       <div style={{ height: 500 }}>
         <canvas ref={ref} />
