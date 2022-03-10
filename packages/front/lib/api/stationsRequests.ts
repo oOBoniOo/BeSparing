@@ -24,7 +24,6 @@ const compare95 = (a, b) => {
 
 export const getNearStations = async (lat, lng, tipo) => {
   const stations = await apiClient.get(`/stations?long=${lng}&lat=${lat}`);
-  console.log('desde el api front', stations.data.stations);
   let nearStationsList = stations.data.nearStationsList;
   if (tipo == 'gasolina') {
     nearStationsList = stations.data.stations.sort(compare95);
