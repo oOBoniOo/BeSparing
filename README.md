@@ -159,6 +159,68 @@ finalProject
 │     ├─ styles
 ```
 
+## 🎈 Data Models <a name="usage"></a>
+
+```js
+- user
+    email: string;
+    userId: string;
+    cp: number;
+    municipio?: string;
+    carbData?: {
+    capacidad: number;
+    consumo: number;
+    modelo: '';
+    tipo: '';
+    };
+    eData?: {
+      coste: number[];
+    };
+
+- car
+    marca: string;
+    modelo: string;
+    generacion: string;
+    version: string;
+    consumo: number;
+    capacidad: number;
+    tipo: string;
+    estado: string;
+
+- gasolinera
+    cp: number;
+    direccion: string;
+    horario: string;
+    localidad: string;
+    municipio: string;
+    location: iPoint;
+    nombre: string;
+    gasoleo: number;
+    gasolina_95: number;
+    gasolina_98: number;
+    provincia: string;
+    ideess: number;
+    idmunicipio: number;
+    idprovincia: number;
+    idccaa: number;
+
+- autonomia
+    codigo: Number,
+    nombre: String,
+
+- provincia
+    codigo: {type: Number},
+    nombre: String,
+    aut: { type: Schema.Types.ObjectId, ref: 'Autonomia' },
+
+- municipio
+    nombre: String,
+    coords: Object,
+    prov: { type: Schema.Types.ObjectId, ref: 'Provincia' },
+    aut: { type: Schema.Types.ObjectId, ref: 'Autonomia' },
+
+```
+
 ## 🎈 API <a name="usage"></a>
 
 Dispondremos de los siguientes endpoints:
