@@ -15,7 +15,7 @@ export const MenuLinksMobile = () => {
           {MenuItems.map((item, index) => {
             return (
               <Link href={item.url} key={item.url}>
-                <li className='active'>
+                <li className=''>
                   <a
                     href='index.html'
                     className='block px-2 py-4 text-sm font-semibold text-gray-500 bg-rose-300'>

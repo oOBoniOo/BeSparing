@@ -11,22 +11,24 @@ import { Helmet } from 'react-helmet';
 const MyApp = ({ Component, pageProps }) => (
   <Provider store={userStore}>
     <UserProvider>
-      <Layout>
-        <Helmet
-          htmlAttributes={{ lang: 'es' }}
-          title='Ahorra con BeSparing'
-          meta={[
-            {
-              name: 'viewport',
-              content: 'width=device-width, initial-scale=1',
-            },
-            { property: 'og:title', content: 'Ahorra en lo basico' },
-          ]}>
-          <link rel='icon' src='../static/favicon.ico' sizes='16x16' />
-        </Helmet>
-        <CheckUser />
-        <Component {...pageProps} />
-      </Layout>
+      <div className='bg-rose-100'>
+        <Layout>
+          <Helmet
+            htmlAttributes={{ lang: 'es' }}
+            title='Ahorra con BeSparing'
+            meta={[
+              {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1',
+              },
+              { property: 'og:title', content: 'Ahorra en lo basico' },
+            ]}>
+            <link rel='icon' src='../static/favicon.ico' sizes='16x16' />
+          </Helmet>
+          <CheckUser />
+          <Component {...pageProps} />
+        </Layout>
+      </div>
     </UserProvider>
   </Provider>
 );

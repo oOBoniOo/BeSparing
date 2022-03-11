@@ -15,7 +15,7 @@ const ContentButton = () => {
         <>
           <div className='inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white border border-transparent rounded-full bg-rose-300 md:w-auto hover:bg-rose-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
             <Link href='/gasolina'>Ahorra en carburantes</Link>
-            <span className='absolute top-0 right-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
+            <span className='absolute top-0 left-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
               en 2 simples pasos
             </span>
           </div>
@@ -27,6 +27,37 @@ const ContentButton = () => {
             type='button'
             className='inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white border border-transparent rounded-full bg-rose-300 md:w-auto hover:bg-rose-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
             Ahorra en carburantes
+          </a>
+          <span className='absolute top-0 left-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
+            logeate y descubre como
+          </span>
+        </>
+      )}
+    </>
+  );
+};
+const ContentButton2 = () => {
+  const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+  return (
+    <>
+      {user ? (
+        <>
+          <div className='inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white border border-transparent rounded-full bg-rose-300 md:w-auto hover:bg-rose-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+            <Link href='/electricidad'>Controla el precio de la electricidad</Link>
+            <span className='absolute top-0 right-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
+              visual y sencillo
+            </span>
+          </div>
+        </>
+      ) : (
+        <>
+          <a
+            href='/api/auth/login'
+            type='button'
+            className='inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white border border-transparent rounded-full bg-rose-300 md:w-auto hover:bg-rose-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
+            Controla el precio de la electricidad
           </a>
           <span className='absolute top-0 right-0 px-2 py-1 -mt-3 -mr-6 text-xs font-medium leading-tight text-white bg-gray-900 rounded-full'>
             logeate y descubre como
@@ -57,6 +88,7 @@ const Landing = () => (
     <div className='flex flex-col items-center mt-12 text-center'>
       <span className='relative inline-flex w-full md:w-auto'>
         <ContentButton></ContentButton>
+        <ContentButton2></ContentButton2>
         {/* <CheckUser /> */}
       </span>
       <a href='#' className='mt-3 text-sm text-indigo-500'></a>
